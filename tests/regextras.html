@@ -39,7 +39,6 @@ var matchingKeyValues = RegExtras(/^(.*?): (.*)$/m).filter('key1: val1\nkey2: ke
 document.writeln('Matching key-value sets (' + matchingKeyValues.length + '): ' +
     matchingKeyValues[0][1] + '<br>'
 );
-alert(matchingKeyValues);
 
 document.writeln(
     RegExtras(/^(.*?): (.*)$/m).reduce('key1: val1\nkey2: key2', function (prev, key, val, i, n0) {
