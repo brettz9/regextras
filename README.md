@@ -42,3 +42,4 @@ to which they correspond with the only exceptions detailed below.
 
 - Add `find` and `findIndex` methods
 - Add version on the `String` prototype instead of `RegExp`
+- Document prototype versions usage
