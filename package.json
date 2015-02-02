@@ -1,0 +1,10 @@
+{
+    "name": "regextras",
+    "license": "MIT",
+    "author": "Brett Zamir",
+    "version": "0.1.0",
+    "title": "RegExtras",
+    "id": "regextras@brett.zamir",
+    "main": "lib/index",
+    "description": "Array extras for regular expressions"
+}
