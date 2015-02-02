@@ -37,3 +37,7 @@ to which they correspond with the only exceptions detailed below.
 - ***filter(str, callback, thisObject)***
 - ***reduce(str, cb, prev, thisObj)***
 - ***reduceRight(str, cb, prev, thisObj)***
+
+# Todos
+
+- Add `find` and `findIndex` methods
