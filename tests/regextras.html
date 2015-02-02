@@ -8,8 +8,10 @@
 <script src="../lib/index.js"></script>
 <script>
 
+function write (s) {document.writeln(s);}
+
 RegExtras(/^(.*?): (.*)$/m).forEach('key1: val1\nkey2: key2', function (key, val, i, n0) {
-    document.writeln('key is ' + key + ', value is ' + val + ', and the iteration count is ' + i + '<br>');
+    write('key is ' + key + ', value is ' + val + ', and the iteration count is ' + i + '<br>');
 });
 
 if (
@@ -17,17 +19,17 @@ if (
         return key === val;
     })
 ) {
-    document.writeln('At least one key matches its value<br>');
+    write('At least one key matches its value<br>');
 }
 if (!
     RegExtras(/^(.*?): (.*)$/m).every('key1: val1\nkey2: key2', function (key, val, i, n0) {
         return key === val;
     })
 ) {
-    document.writeln('Not all keys match their values<br>');
+    write('Not all keys match their values<br>');
 }
 
-document.writeln(
+write(
     RegExtras(/^(.*?): (.*)$/m).map('key1: val1\nkey2: key2', function (key, val, i, n0) {
         return key + '=' + val + '<br>';
     }).join('')
@@ -36,17 +38,17 @@ document.writeln(
 var matchingKeyValues = RegExtras(/^(.*?): (.*)$/m).filter('key1: val1\nkey2: key2', function (key, val, i, n0) {
     return key === val;
 });
-document.writeln('Matching key-value sets (' + matchingKeyValues.length + '): ' +
+write('Matching key-value sets (' + matchingKeyValues.length + '): ' +
     matchingKeyValues[0][1] + '<br>'
 );
 
-document.writeln(
+write(
     RegExtras(/^(.*?): (.*)$/m).reduce('key1: val1\nkey2: key2', function (prev, key, val, i, n0) {
         return prev + key + '=' + val + '<br>';
     })
 );
 
-document.writeln(
+write(
     RegExtras(/^(.*?): (.*)$/m).reduceRight('key1: val1\nkey2: key2', function (prev, key, val, i, n0) {
         return prev + key + '=' + val + '<br>';
     })
