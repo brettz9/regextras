@@ -11,19 +11,21 @@ module.exports = testCase({
     // ============================================================================
     'forEach': function (test) {
     // ============================================================================
-        test.expect(3);
+        test.expect(4);
         
-        var keys = [], vals = [], is = [];
+        var keys = [], vals = [], is = [], n0s = [];
         
         RegExtras(/^(.*?): (.*)$/m).forEach('key1: val1\nkey2: key2', function (key, val, i, n0) {
             keys.push(key);
             vals.push(val);
             is.push(i);
+            n0s.push(n0);
         });
 
         test.deepEqual(['key1', 'key2'], keys);
         test.deepEqual(['val1', 'key2'], vals);
         test.deepEqual([0, 1], is);
+        test.deepEqual(['key1: val1', 'key2: key2'], n0s);
         
         test.done();
     },
