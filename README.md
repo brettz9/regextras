@@ -60,13 +60,13 @@ Also adds the following methods:
 
 ### Callbacks
 
-All callbacks will follow the signature:
+All callbacks follow the signature:
 
-`cb(key, val, i, n0);`
+`cb(n1, n2..., i, n0);`
 
 ...except for the `reduce` and `reduceRight` callbacks which follow:
 
-`cb(prev, key, val, i, n0);`
+`cb(prev, n1, n2..., i, n0);`
 
 ### Prototype versions
 
