@@ -2,7 +2,7 @@
     "name": "regextras",
     "license": "MIT",
     "author": "Brett Zamir",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "title": "RegExtras",
     "id": "regextras@brett.zamir",
     "main": "lib/index",
