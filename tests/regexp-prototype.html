@@ -53,6 +53,26 @@ write(
     })
 );
 
+write(
+    'Key2 match: ' + (/^(.*?): (.*)$/m).find('key1: val1\nkey2: key2', function (prev, key, val, i, n0) {
+        return key === 'key2';
+    }) + '<br>'
+);
+
+write(
+    'Key2 index:' + (/^(.*?): (.*)$/m).findIndex('key1: val1\nkey2: key2', function (prev, key, val, i, n0) {
+        return key === 'key2';
+    }) + '<br>'
+);
+
+var exec = (/^(.*?): (.*)$/m).findExec('key1: val1\nkey2: key2', function (prev, key, val, i, n0) {
+    return key === 'key2';
+});
+write(
+    'findExec index:' + exec.index + '<br>' +
+    'findExec result: ' + exec
+);
+
 </script>
 </body>
 </html>

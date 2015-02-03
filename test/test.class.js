@@ -83,6 +83,41 @@ module.exports = testCase({
         });
         test.deepEqual('key2=key2;key1=val1;', result);
         test.done();
+    },
+    // ============================================================================
+    'find': function (test) {
+    // ============================================================================
+        test.expect(1);
+        var result = RegExtras(/^(.*?): (.*)$/m).find('key1: val1\nkey2: key2', function (key, val, i, n0) {
+            return key === 'key2';
+        });
+        test.strictEqual('key2: key2', result);
+        test.done();
+    },
+    // ============================================================================
+    'findIndex': function (test) {
+    // ============================================================================
+        test.expect(1);
+        var result = RegExtras(/^(.*?): (.*)$/m).findIndex('key1: val1\nkey2: key2', function (key, val, i, n0) {
+            return key === 'key2';
+        });
+        test.strictEqual(1, result);
+        test.done();
+    },
+    // ============================================================================
+    'findExec': function (test) {
+    // ============================================================================
+        test.expect(1);
+        var input = 'key1: val1\nkey2: key2';
+        var result = RegExtras(/^(.*?): (.*)$/m).findExec(input, function (key, val, i, n0) {
+            return key === 'key2';
+        });
+        var expected = ['key2', 'key2'];
+        expected.index = 11;
+        expected.input = input;
+
+        test.deepEqual(expected, result);
+        test.done();
     }
 });
 
