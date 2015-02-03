@@ -30,16 +30,15 @@ The `new` keywords is not required.
 These methods (and their callbacks) behave like the [array extra](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#Iteration_methods)
 to which they correspond with the only exceptions detailed below.
 
-- ***forEach(str, callback, thisObject)*** - Unlike the other extras, this method returns the RegExtras object (to enable chaining)
+- ***forEach(str, callback, thisObject)*** - Unlike the other extras, this method returns the RegExtras object (to enable chaining).
 - ***some(str, callback, thisObject)***
 - ***every(str, callback, thisObject)***
 - ***map(str, callback, thisObject)***
 - ***filter(str, callback, thisObject)***
-- ***reduce(str, cb, prev, thisObj)***
-- ***reduceRight(str, cb, prev, thisObj)***
+- ***reduce(str, cb, prev, thisObj)*** - Unlike the array extras, allows a fourth argument to set an alternative value for `this` within the callback.
+- ***reduceRight(str, cb, prev, thisObj)*** - Unlike the array extras, allows a fourth argument to set an alternative value for `this` within the callback.
 
 # Todos
 
 - Add `find` and `findIndex` methods
-- Add version on the `String` prototype instead of `RegExp`
-- Document prototype versions usage
+- Document and add tests for prototype versions usage

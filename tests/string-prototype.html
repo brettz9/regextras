@@ -2,26 +2,26 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title>RegExtras RegExp prototype</title>
+    <title>RegExtras String prototype</title>
 </head>
 <body>
-<script src="../lib/regexp-prototype.js"></script>
+<script src="../lib/string-prototype.js"></script>
 <script>
 function write (s) {document.writeln(s);}
 
-(/^(.*?): (.*)$/m).forEach('key1: val1\nkey2: key2', function (key, val, i, n0) {
+'key1: val1\nkey2: key2'.forEach(/^(.*?): (.*)$/m, function (key, val, i, n0) {
     write('key is ' + key + ', value is ' + val + ', and the iteration count is ' + i + '<br>');
 });
 
 if (
-    (/^(.*?): (.*)$/m).some('key1: val1\nkey2: key2', function (key, val, i, n0) {
+    'key1: val1\nkey2: key2'.some(/^(.*?): (.*)$/m, function (key, val, i, n0) {
         return key === val;
     })
 ) {
     write('At least one key matches its value<br>');
 }
 if (!
-    (/^(.*?): (.*)$/m).every('key1: val1\nkey2: key2', function (key, val, i, n0) {
+    'key1: val1\nkey2: key2'.every(/^(.*?): (.*)$/m, function (key, val, i, n0) {
         return key === val;
     })
 ) {
@@ -29,12 +29,12 @@ if (!
 }
 
 write(
-    (/^(.*?): (.*)$/m).map('key1: val1\nkey2: key2', function (key, val, i, n0) {
+    'key1: val1\nkey2: key2'.map(/^(.*?): (.*)$/m, function (key, val, i, n0) {
         return key + '=' + val + '<br>';
     }).join('')
 );
 
-var matchingKeyValues = (/^(.*?): (.*)$/m).filter('key1: val1\nkey2: key2', function (key, val, i, n0) {
+var matchingKeyValues = 'key1: val1\nkey2: key2'.filter(/^(.*?): (.*)$/m, function (key, val, i, n0) {
     return key === val;
 });
 write('Matching key-value sets (' + matchingKeyValues.length + '): ' +
@@ -42,13 +42,13 @@ write('Matching key-value sets (' + matchingKeyValues.length + '): ' +
 );
 
 write(
-    (/^(.*?): (.*)$/m).reduce('key1: val1\nkey2: key2', function (prev, key, val, i, n0) {
+    'key1: val1\nkey2: key2'.reduce(/^(.*?): (.*)$/m, function (prev, key, val, i, n0) {
         return prev + key + '=' + val + '<br>';
     })
 );
 
 write(
-    (/^(.*?): (.*)$/m).reduceRight('key1: val1\nkey2: key2', function (prev, key, val, i, n0) {
+    'key1: val1\nkey2: key2'.reduceRight(/^(.*?): (.*)$/m, function (prev, key, val, i, n0) {
         return prev + key + '=' + val + '<br>';
     })
 );
