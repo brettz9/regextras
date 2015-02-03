@@ -38,7 +38,7 @@ var matchingKeyValues = 'key1: val1\nkey2: key2'.filter(/^(.*?): (.*)$/m, functi
     return key === val;
 });
 write('Matching key-value sets (' + matchingKeyValues.length + '): ' +
-    matchingKeyValues[0][1] + '<br>'
+    matchingKeyValues[0] + '<br>'
 );
 
 write(
@@ -70,7 +70,15 @@ var exec = 'key1: val1\nkey2: key2'.findExec(/^(.*?): (.*)$/m, function (prev, k
 });
 write(
     'findExec index:' + exec.index + '<br>' +
-    'findExec result: ' + exec
+    'findExec result: ' + exec + '<br>'
+);
+
+var exec = 'key1: val1\nkey2: key2'.filterExec(/^(.*?): (.*)$/m, function (prev, key, val, i, n0) {
+    return key === 'key2';
+});
+write(
+    'filterExec index:' + exec[0].index + '<br>' +
+    'filterExec result: ' + exec[0]
 );
 
 </script>

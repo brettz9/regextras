@@ -4,6 +4,22 @@ Array extras for regular expressions.
 
 Also provides optional `String` and `RegExp` prototype extensions.
 
+## Installation
+
+Node:
+
+```js
+var RegExtras = require('regextras');
+```
+
+Browser:
+
+```html
+<script src="regextras/lib/index.js"></script>
+```
+
+The prototype versions must be required or included separately.
+
 ## API
 
 ### Constructor
@@ -52,6 +68,16 @@ All callbacks will follow the signature:
 
 `cb(prev, key, val, i, n0);`
 
+### Prototype versions
+
+`String` and `RegExp` versions of the above methods are also available.
+
+The `RegExp` prototype version acts in the same way as `RegExtra` just
+without the need for a separate constructor call.
+
+The `String` prototype version differs in that instead of the first argument
+being a string, it is the regular expression.
+
 # Todos
 
-- Document and add nodeunit tests for prototype versions usage
+- Could add [Array accessor methods](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#Accessor_methods) like `slice()`, with an additional supplied regular expression to gather the `exec` results into an array.

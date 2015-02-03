@@ -2,9 +2,8 @@
 /*jslint vars:true*/
 (function () {'use strict';
 
-var RegExtras = require('../lib/index'),
-    testCase = require('nodeunit').testCase;
-
+var testCase = require('nodeunit').testCase;
+require('../lib/regexp-prototype');
 
 module.exports = testCase({
 
@@ -15,7 +14,7 @@ module.exports = testCase({
         
         var keys = [], vals = [], is = [], n0s = [];
         
-        RegExtras(/^(.*?): (.*)$/m).forEach('key1: val1\nkey2: key2', function (key, val, i, n0) {
+        (/^(.*?): (.*)$/m).forEach('key1: val1\nkey2: key2', function (key, val, i, n0) {
             keys.push(key);
             vals.push(val);
             is.push(i);
@@ -33,7 +32,7 @@ module.exports = testCase({
     'some': function (test) {
     // ============================================================================
         test.expect(1);
-        var result = RegExtras(/^(.*?): (.*)$/m).some('key1: val1\nkey2: key2', function (key, val, i, n0) {
+        var result = (/^(.*?): (.*)$/m).some('key1: val1\nkey2: key2', function (key, val, i, n0) {
             return key === val;
         });
         test.strictEqual(true, result);
@@ -42,7 +41,7 @@ module.exports = testCase({
     'every': function (test) {
     // ============================================================================
         test.expect(1);
-        var result = RegExtras(/^(.*?): (.*)$/m).every('key1: val1\nkey2: key2', function (key, val, i, n0) {
+        var result = (/^(.*?): (.*)$/m).every('key1: val1\nkey2: key2', function (key, val, i, n0) {
             return key === val;
         });
         test.strictEqual(false, result);
@@ -51,7 +50,7 @@ module.exports = testCase({
     'map': function (test) {
     // ============================================================================
         test.expect(1);
-        var result = RegExtras(/^(.*?): (.*)$/m).map('key1: val1\nkey2: key2', function (key, val, i, n0) {
+        var result = (/^(.*?): (.*)$/m).map('key1: val1\nkey2: key2', function (key, val, i, n0) {
             return [key, val];
         });
         test.deepEqual([['key1', 'val1'], ['key2', 'key2']], result);
@@ -60,7 +59,7 @@ module.exports = testCase({
     'filter': function (test) {
     // ============================================================================
         test.expect(1);
-        var result = RegExtras(/^(.*?): (.*)$/m).filter('key1: val1\nkey2: key2', function (key, val, i, n0) {
+        var result = (/^(.*?): (.*)$/m).filter('key1: val1\nkey2: key2', function (key, val, i, n0) {
             return key === val;
         });
         test.deepEqual(['key2: key2'], result);
@@ -69,7 +68,7 @@ module.exports = testCase({
     'reduce': function (test) {
     // ============================================================================
         test.expect(1);
-        var result = RegExtras(/^(.*?): (.*)$/m).reduce('key1: val1\nkey2: key2', function (prev, key, val, i, n0) {
+        var result = (/^(.*?): (.*)$/m).reduce('key1: val1\nkey2: key2', function (prev, key, val, i, n0) {
             return prev + key + '=' + val + ';';
         });
         test.deepEqual('key1=val1;key2=key2;', result);
@@ -78,7 +77,7 @@ module.exports = testCase({
     'reduceRight': function (test) {
     // ============================================================================
         test.expect(1);
-        var result = RegExtras(/^(.*?): (.*)$/m).reduceRight('key1: val1\nkey2: key2', function (prev, key, val, i, n0) {
+        var result = (/^(.*?): (.*)$/m).reduceRight('key1: val1\nkey2: key2', function (prev, key, val, i, n0) {
             return prev + key + '=' + val + ';';
         });
         test.deepEqual('key2=key2;key1=val1;', result);
@@ -88,7 +87,7 @@ module.exports = testCase({
     'find': function (test) {
     // ============================================================================
         test.expect(1);
-        var result = RegExtras(/^(.*?): (.*)$/m).find('key1: val1\nkey2: key2', function (key, val, i, n0) {
+        var result = (/^(.*?): (.*)$/m).find('key1: val1\nkey2: key2', function (key, val, i, n0) {
             return key === 'key2';
         });
         test.strictEqual('key2: key2', result);
@@ -98,7 +97,7 @@ module.exports = testCase({
     'findIndex': function (test) {
     // ============================================================================
         test.expect(1);
-        var result = RegExtras(/^(.*?): (.*)$/m).findIndex('key1: val1\nkey2: key2', function (key, val, i, n0) {
+        var result = (/^(.*?): (.*)$/m).findIndex('key1: val1\nkey2: key2', function (key, val, i, n0) {
             return key === 'key2';
         });
         test.strictEqual(1, result);
@@ -109,7 +108,7 @@ module.exports = testCase({
     // ============================================================================
         test.expect(1);
         var input = 'key1: val1\nkey2: key2';
-        var result = RegExtras(/^(.*?): (.*)$/m).findExec(input, function (key, val, i, n0) {
+        var result = (/^(.*?): (.*)$/m).findExec(input, function (key, val, i, n0) {
             return key === 'key2';
         });
         var expected = ['key2', 'key2'];
@@ -123,7 +122,7 @@ module.exports = testCase({
     // ============================================================================
         test.expect(1);
         var input = 'key1: val1\nkey2: key2';
-        var result = RegExtras(/^(.*?): (.*)$/m).filterExec(input, function (key, val, i, n0) {
+        var result = (/^(.*?): (.*)$/m).filterExec(input, function (key, val, i, n0) {
             return key === val;
         });
         var expectedArr = [['key2', 'key2', 1, 'key2: key2']];
