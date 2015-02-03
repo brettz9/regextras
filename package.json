@@ -6,5 +6,8 @@
     "title": "RegExtras",
     "id": "regextras@brett.zamir",
     "main": "lib/index",
-    "description": "Array extras for regular expressions"
+    "description": "Array extras for regular expressions",
+    "devDependencies": {
+        "nodeunit": "0.x"
+    }
 }
