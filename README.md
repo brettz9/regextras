@@ -29,7 +29,7 @@ The prototype versions must be required or included separately.
 Example:
 
 ```js
-var piglatinArray = RegExtras(/\w*w?ay/).reduce('ouyay areway illysay', function (arr, word) {
+var piglatinArray = RegExtras(/\w*w?ay/).reduce('ouyay areway illysay', function (arr, i, word) {
     if ((/way$/).test(word)) {arr.push(word.replace(/way$/, ''));}
     else {arr.push(word.slice(-3, -2) + word.slice(0, -3));}
     return arr;
