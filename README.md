@@ -20,6 +20,12 @@ Browser:
 
 The prototype versions must be required or included separately.
 
+If you need the generator methods, you should also add the following:
+
+```html
+<script src="regextras/lib/index-generators.js"></script>
+```
+
 ## API
 
 ### Constructor
@@ -36,27 +42,60 @@ var piglatinArray = RegExtras(/\w*w?ay/).reduce('ouyay areway illysay', function
 }, []);
 ```
 
-All arguments but the first are optional, and the first argument can be expressed as a string.
+All arguments but the first are optional, and the first argument can be
+expressed as a string.
 
 The `new` keywords is not required.
 
-### Methods
+### Instance methods
 
 These methods (and their callbacks) behave like the [array extra](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#Iteration_methods)
 to which they correspond with exceptions detailed below.
 
-- ***forEach(str, callback, thisObject)*** - Unlike the other extras, this method returns the RegExtras object (to enable chaining).
-- ***some(str, callback, thisObject)***
-- ***every(str, callback, thisObject)***
-- ***map(str, callback, thisObject)***
-- ***filter(str, callback, thisObject)***
-- ***reduce(str, cb, prev, thisObj)*** - Unlike the array extras, allows a fourth argument to set an alternative value for `this` within the callback.
-- ***reduceRight(str, cb, prev, thisObj)*** - Unlike the array extras, allows a fourth argument to set an alternative value for `this` within the callback.
-- ***find(str, cb, thisObj)***
-- ***findIndex(str, cb, thisObj)***
+-   ***forEach(str, callback, thisObject)*** - Unlike the other extras, this
+    method returns the RegExtras object (to enable chaining).
+
+-   ***some(str, callback, thisObject)***
+
+-   ***every(str, callback, thisObject)***
+
+-   ***map(str, callback, thisObject)***
+
+-   ***filter(str, callback, thisObject)***
+
+-   ***reduce(str, cb, prev, thisObj)*** - Unlike the array extras, allows a
+    fourth argument to set an alternative value for `this` within the callback.
+
+-   ***reduceRight(str, cb, prev, thisObj)*** - Unlike the array extras,
+    allows a fourth argument to set an alternative value for `this` within
+    the callback.
+
+-   ***find(str, cb, thisObj)***
+
+-   ***findIndex(str, cb, thisObj)***
 
 Also adds the following methods:
-- ***findExec(str, cb, thisObj)*** - Operates like `find()` except that it returns the `exec` result array (with `index` and `input` as well as numeric properties as returned by [RegExp.prototype.exec](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/exec)).
+
+-   ***findExec(str, cb, thisObj)*** - Operates like `find()` except that it
+    returns the `exec` result array (with `index` and `input` as well as
+    numeric properties as returned by [RegExp.prototype.exec](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/exec)).
+
+If the `index-generators.js` file is added and you are only supporting
+modern browsers, one can use the following generator methods:
+
+-   ***values(str)*** - Returns an iterator with the array of matches (for each
+    `RegExp.prototype.exec` result)
+
+-   ***keys(str)*** - Returns an iterator with 0-based indexes (from
+    `RegExp.prototype.exec` result)
+
+-   ***entries(str)*** - Returns an iterator with an array containing the
+    key and the array of matches (for each `RegExp.prototype.exec` result)
+
+### Class methods
+
+-   ***mixinRegex(regex, newFlags='', newLastIndex=regex.lastIndex)*** -
+    Makes a copy of a regular expression.
 
 ### Callbacks
 
@@ -78,6 +117,12 @@ without the need for a separate constructor call.
 The `String` prototype version differs in that instead of the first argument
 being a string, it is the regular expression.
 
-# Todos
+## Todos
 
-- Could add [Array accessor methods](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#Accessor_methods) like `slice()`, with an additional supplied regular expression to gather the `exec` results into an array.
+1.  Could add [Array accessor methods](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#Accessor_methods)
+    like `slice()`, with an additional supplied regular expression to gather
+    the `exec` results into an array.
+
+2.  Utilize `nodeunit` testing (including for `mixinRegex`)
+
+3.  Add generators for prototype versions

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Testing generators</title>
+  </head>
+  <body>
+<script src="../lib/index.js"></script>
+<script src="../lib/index-generators.js"></script>
+
+<script>
+
+const iter = RegExtras(/a([b-z]*)/).values('abc add axyz')
+for (let [whole, part] of iter) {
+    console.log(whole);
+    console.log(part);
+}
+
+const iter2 = RegExtras(/a([b-z]*)/).entries('abc add axyz')
+for (let [i, [whole, part]] of iter2) {
+    console.log(i);
+    console.log(whole);
+    console.log(part);
+}
+
+const iter3 = RegExtras(/a([b-z]*)/).keys('abc add axyz')
+for (let i of iter3) {
+    console.log(i);
+}
+
+</script>
+  </body>
+</html>

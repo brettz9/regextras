@@ -2,11 +2,21 @@
     "name": "regextras",
     "license": "MIT",
     "author": "Brett Zamir",
+    "contributors": [],
+    "repository": "https://github.com/brettz9/regextras",
+    "homepage": "https://github.com/brettz9/regextras",
+    "bugs": "https://github.com/brettz9/regextras/issues",
+    "scripts": {
+
+    },
     "version": "0.1.1",
     "title": "RegExtras",
     "id": "regextras@brett.zamir",
-    "main": "lib/index",
+    "main": "lib/main",
+    "keywords": ["regex", "regexp", "regular expression"],
     "description": "Array extras for regular expressions",
+    "engines": {},
+    "dependencies": {},
     "devDependencies": {
         "nodeunit": "0.x"
     }
