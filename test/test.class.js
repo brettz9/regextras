@@ -2,7 +2,7 @@
 /*jslint vars:true*/
 (function () {'use strict';
 
-var RegExtras = require('../lib/index'),
+var RegExtras = require('../lib/main'),
     testCase = require('nodeunit').testCase;
 
 
@@ -12,9 +12,9 @@ module.exports = testCase({
     'forEach': function (test) {
     // ============================================================================
         test.expect(4);
-        
+
         var keys = [], vals = [], is = [], n0s = [];
-        
+
         RegExtras(/^(.*?): (.*)$/m).forEach('key1: val1\nkey2: key2', function (key, val, i, n0) {
             keys.push(key);
             vals.push(val);
@@ -26,7 +26,7 @@ module.exports = testCase({
         test.deepEqual(['val1', 'key2'], vals);
         test.deepEqual([0, 1], is);
         test.deepEqual(['key1: val1', 'key2: key2'], n0s);
-        
+
         test.done();
     },
     // ============================================================================
@@ -130,6 +130,55 @@ module.exports = testCase({
         expectedArr[0].index = 11;
         expectedArr[0].input = input;
         test.deepEqual(expectedArr, result);
+        test.done();
+    },
+    'values': function (test) {
+        const iter = RegExtras(/a([b-z]*)/).values('abc add axyz')
+        const wholes = [];
+        const parts = [];
+        const expectedWholes = ['abc', 'add', 'axyz'];
+        const expectedParts = ['bc', 'dd', 'xyz'];
+        let whole, part;
+        for (let arr of iter) {
+            whole = arr[0];
+            part = arr[1];
+            wholes.push(whole);
+            parts.push(part);
+        }
+        test.deepEqual(expectedWholes, wholes);
+        test.deepEqual(expectedParts, parts);
+        test.done();
+    },
+    'entries': function (test) {
+        const iter2 = RegExtras(/a([b-z]*)/).entries('abc add axyz')
+        const wholes = [];
+        const parts = [];
+        const is = [];
+        const expectedWholes = ['abc', 'add', 'axyz'];
+        const expectedParts = ['bc', 'dd', 'xyz'];
+        const expectedIs = [0, 1, 2];
+        let i, whole, part;
+        for (let arr of iter2) {
+            i = arr[0];
+            whole = arr[1][0];
+            part = arr[1][1];
+            is.push(i);
+            wholes.push(whole);
+            parts.push(part);
+        }
+        test.deepEqual(expectedIs, is);
+        test.deepEqual(expectedWholes, wholes);
+        test.deepEqual(expectedParts, parts);
+        test.done();
+    },
+    'keys': function (test) {
+        const is = [];
+        const iter3 = RegExtras(/a([b-z]*)/).keys('abc add axyz')
+        const expectedIs = [0, 1, 2];
+        for (let i of iter3) {
+            is.push(i);
+        }
+        test.deepEqual(expectedIs, is);
         test.done();
     }
 });

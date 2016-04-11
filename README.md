@@ -80,8 +80,9 @@ Also adds the following methods:
     returns the `exec` result array (with `index` and `input` as well as
     numeric properties as returned by [RegExp.prototype.exec](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/exec)).
 
-If the `index-generators.js` file is added and you are only supporting
-modern browsers, one can use the following generator methods:
+If you are using the Node version (or if, for the browser, you add the
+`index-generators.js` file and you are only supporting modern browsers), one
+can use the following generator methods:
 
 -   ***values(str)*** - Returns an iterator with the array of matches (for each
     `RegExp.prototype.exec` result)
@@ -123,6 +124,6 @@ being a string, it is the regular expression.
     like `slice()`, with an additional supplied regular expression to gather
     the `exec` results into an array.
 
-2.  Utilize `nodeunit` testing (including for `mixinRegex`)
+2.  Utilize `nodeunit` browser testing (and add `mixinRegex` tests)
 
 3.  Add generators for prototype versions

@@ -7,9 +7,9 @@
     "homepage": "https://github.com/brettz9/regextras",
     "bugs": "https://github.com/brettz9/regextras/issues",
     "scripts": {
-
+        "test": "nodeunit test"
     },
-    "version": "0.2.0",
+    "version": "0.2.1",
     "title": "RegExtras",
     "id": "regextras@brett.zamir",
     "main": "lib/main",
