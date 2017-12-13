@@ -4,11 +4,13 @@ Array extras for regular expressions.
 
 Also provides optional `String` and `RegExp` prototype extensions.
 
-No more writing the implementation-detail-leaking and otherwise ugly:
+No more writing the implementation-detail-leaking, non-semantic, and
+otherwise ugly:
 
 ```js
 let matches;
 while ((matches = regex.exec(str)) !== null) {
+    // Do something
     if (condition) {
         break;
     }
@@ -22,9 +24,19 @@ The following is equivalent to that above (though with `matches` as local):
 
 ```js
 Regextras(regex).some(str, (matches) => {
+    // Do something
     if (condition) {
         return true;
     }
+});
+```
+
+And if the condition is at the end of the loop, just this:
+
+```js
+Regextras(regex).some(str, (matches) => {
+    // Do something
+    return condition;
 });
 ```
 
