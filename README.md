@@ -4,12 +4,36 @@ Array extras for regular expressions.
 
 Also provides optional `String` and `RegExp` prototype extensions.
 
+No more writing the implementation-detail-leaking and otherwise ugly:
+
+```js
+let matches;
+while ((matches = regex.exec(str)) !== null) {
+    if (condition) {
+        break;
+    }
+}
+```
+
+While all of the array extras could be useful, `some`, might be the most
+general purpose as it (as with `every`) allows short-circuiting (breaking).
+
+The following is equivalent to that above (though with `matches` as local):
+
+```js
+Regextras(regex).some(str, (matches) => {
+    if (condition) {
+        return true;
+    }
+});
+```
+
 ## Installation
 
 Node:
 
 ```js
-var RegExtras = require('regextras');
+const RegExtras = require('regextras');
 ```
 
 Browser:
@@ -35,7 +59,7 @@ If you need the generator methods, you should also add the following:
 Example:
 
 ```js
-var piglatinArray = RegExtras(/\w*w?ay/).reduce('ouyay areway illysay', function (arr, i, word) {
+const piglatinArray = RegExtras(/\w*w?ay/).reduce('ouyay areway illysay', function (arr, i, word) {
     if ((/way$/).test(word)) {arr.push(word.replace(/way$/, ''));}
     else {arr.push(word.slice(-3, -2) + word.slice(0, -3));}
     return arr;
