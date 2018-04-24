@@ -1,86 +1,9 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
     <meta charset="utf-8" />
     <title>RegExtras RegExp prototype</title>
+    <script type="module" src="regexp-prototype.js"></script>
 </head>
-<body>
-<script src="../lib/regexp-prototype.js"></script>
-<script>
-function write (s) {document.writeln(s);}
-
-(/^(.*?): (.*)$/m).forEach('key1: val1\nkey2: key2', function (key, val, i, n0) {
-    write('key is ' + key + ', value is ' + val + ', and the iteration count is ' + i + '<br>');
-});
-
-if (
-    (/^(.*?): (.*)$/m).some('key1: val1\nkey2: key2', function (key, val, i, n0) {
-        return key === val;
-    })
-) {
-    write('At least one key matches its value<br>');
-}
-if (!
-    (/^(.*?): (.*)$/m).every('key1: val1\nkey2: key2', function (key, val, i, n0) {
-        return key === val;
-    })
-) {
-    write('Not all keys match their values<br>');
-}
-
-write(
-    (/^(.*?): (.*)$/m).map('key1: val1\nkey2: key2', function (key, val, i, n0) {
-        return key + '=' + val + '<br>';
-    }).join('')
-);
-
-var matchingKeyValues = (/^(.*?): (.*)$/m).filter('key1: val1\nkey2: key2', function (key, val, i, n0) {
-    return key === val;
-});
-write('Matching key-value sets (' + matchingKeyValues.length + '): ' +
-    matchingKeyValues[0] + '<br>'
-);
-
-write(
-    (/^(.*?): (.*)$/m).reduce('key1: val1\nkey2: key2', function (prev, key, val, i, n0) {
-        return prev + key + '=' + val + '<br>';
-    })
-);
-
-write(
-    (/^(.*?): (.*)$/m).reduceRight('key1: val1\nkey2: key2', function (prev, key, val, i, n0) {
-        return prev + key + '=' + val + '<br>';
-    })
-);
-
-write(
-    'Key2 match: ' + (/^(.*?): (.*)$/m).find('key1: val1\nkey2: key2', function (prev, key, val, i, n0) {
-        return key === 'key2';
-    }) + '<br>'
-);
-
-write(
-    'Key2 index:' + (/^(.*?): (.*)$/m).findIndex('key1: val1\nkey2: key2', function (prev, key, val, i, n0) {
-        return key === 'key2';
-    }) + '<br>'
-);
-
-var exec = (/^(.*?): (.*)$/m).findExec('key1: val1\nkey2: key2', function (prev, key, val, i, n0) {
-    return key === 'key2';
-});
-write(
-    'findExec index:' + exec.index + '<br>' +
-    'findExec result: ' + exec + '<br>'
-);
-
-var exec = (/^(.*?): (.*)$/m).filterExec('key1: val1\nkey2: key2', function (prev, key, val, i, n0) {
-    return key === 'key2';
-});
-write(
-    'filterExec index:' + exec[0].index + '<br>' +
-    'filterExec result: ' + exec[0]
-);
-
-</script>
-</body>
+<body></body>
 </html>

@@ -1,58 +1,9 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
     <meta charset="utf-8" />
     <title>RegExtras</title>
+    <script type="module" src="prototype.js"></script>
 </head>
-<body>
-<script src="../lib/prototype.js"></script>
-<script>
-function write (s) {document.writeln(s);}
-
-(/^(.*?): (.*)$/m).forEach('key1: val1\nkey2: key2', function (key, val, i, n0) {
-    write('key is ' + key + ', value is ' + val + ', and the iteration count is ' + i + '<br>');
-});
-
-if (
-    (/^(.*?): (.*)$/m).some('key1: val1\nkey2: key2', function (key, val, i, n0) {
-        return key === val;
-    })
-) {
-    write('At least one key matches its value<br>');
-}
-if (!
-    (/^(.*?): (.*)$/m).every('key1: val1\nkey2: key2', function (key, val, i, n0) {
-        return key === val;
-    })
-) {
-    write('Not all keys match their values<br>');
-}
-
-write(
-    (/^(.*?): (.*)$/m).map('key1: val1\nkey2: key2', function (key, val, i, n0) {
-        return key + '=' + val + '<br>';
-    }).join('')
-);
-
-var matchingKeyValues = (/^(.*?): (.*)$/m).filter('key1: val1\nkey2: key2', function (key, val, i, n0) {
-    return key === val;
-});
-write('Matching key-value sets (' + matchingKeyValues.length + '): ' +
-    matchingKeyValues[0][1] + '<br>'
-);
-
-write(
-    (/^(.*?): (.*)$/m).reduce('key1: val1\nkey2: key2', function (prev, key, val, i, n0) {
-        return prev + key + '=' + val + '<br>';
-    })
-);
-
-write(
-    (/^(.*?): (.*)$/m).reduceRight('key1: val1\nkey2: key2', function (prev, key, val, i, n0) {
-        return prev + key + '=' + val + '<br>';
-    })
-);
-
-</script>
-</body>
+<body></body>
 </html>

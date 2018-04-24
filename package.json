@@ -7,17 +7,40 @@
     "homepage": "https://github.com/brettz9/regextras",
     "bugs": "https://github.com/brettz9/regextras/issues",
     "scripts": {
-        "test": "nodeunit test"
+        "eslint": "eslint .",
+        "rollup": "rollup -c",
+        "test": "nodeunit test",
+        "test-browser": "npm run eslint && npm run rollup && opn http://127.0.0.1:8081/tests/regextras.html && static -p 8081"
     },
-    "version": "0.2.1",
-    "title": "RegExtras",
+    "version": "0.3.0",
     "id": "regextras@brett.zamir",
-    "main": "lib/main",
-    "keywords": ["regex", "regexp", "regular expression"],
+    "main": "dist/index-umd.js",
+    "module": "dist/index-es.js",
+    "keywords": [
+        "regex",
+        "regexp",
+        "regular expression"
+    ],
     "description": "Array extras for regular expressions",
-    "engines": {},
+    "engines": {
+        "node": "*"
+    },
     "dependencies": {},
     "devDependencies": {
-        "nodeunit": "0.x"
+        "babel-core": "^6.26.0",
+        "eslint": "4.19.1",
+        "eslint-config-standard": "11.0.0",
+        "eslint-plugin-import": "2.11.0",
+        "eslint-plugin-node": "6.0.1",
+        "eslint-plugin-promise": "3.7.0",
+        "eslint-plugin-standard": "3.0.1",
+        "node-static": "^0.7.10",
+        "nodeunit": "0.11.2",
+        "opn-cli": "^3.1.0",
+        "remark-lint": "6.0.1",
+        "rollup": "0.58.2",
+        "rollup-plugin-babel": "^3.0.4",
+        "rollup-plugin-uglify": "^3.0.0",
+        "uglify-es": "^3.3.9"
     }
 }

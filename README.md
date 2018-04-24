@@ -48,10 +48,16 @@ Node:
 const RegExtras = require('regextras');
 ```
 
-Browser:
+Modern browsers:
+
+```js
+import RegExtras from 'node_modules/regextras/dist/index-es.js';
+```
+
+Older browsers:
 
 ```html
-<script src="regextras/lib/index.js"></script>
+<script src="regextras/dist/index-umd.js"></script>
 ```
 
 The prototype versions must be required or included separately.
@@ -59,7 +65,7 @@ The prototype versions must be required or included separately.
 If you need the generator methods, you should also add the following:
 
 ```html
-<script src="regextras/lib/index-generators.js"></script>
+<script src="regextras/dist/index-generators-umd.js"></script>
 ```
 
 ## API
@@ -161,5 +167,8 @@ being a string, it is the regular expression.
     the `exec` results into an array.
 
 2.  Utilize `nodeunit` browser testing (and add `mixinRegex` tests)
+
+    1. Convert nodeunit tests to ES6 modules running through babel-register?;
+        streamline as sole set of tests, reconciling `test` with `tests` folder
 
 3.  Add generators for prototype versions

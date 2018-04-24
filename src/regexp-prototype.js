@@ -1,24 +1,25 @@
-// We copy the regular expression so as to be able to always ensure the exec expression is a global one (and thereby prevent loops)
+/* eslint-disable no-extend-native */
 
-(function () {'use strict';
+// We copy the regular expression so as to be able to always ensure the exec
+//   expression is a global one (and thereby prevent recursion)
 
-function _mixinRegex (regex, newFlags, newLastIndex) {
-    newLastIndex = newLastIndex === undefined ? regex.lastIndex : newLastIndex;
+function mixinRegex (regex, newFlags, newLastIndex = regex.lastIndex) {
     newFlags = newFlags || '';
     regex = new RegExp(
         regex.source,
-        (newFlags.indexOf('g') > -1 ? 'g' : regex.global ? 'g' : '') +
-            (newFlags.indexOf('i') > -1 ? 'i' : regex.ignoreCase ? 'i' : '') +
-            (newFlags.indexOf('m') > -1 ? 'm' : regex.multiline ? 'm' : '') +
-            (newFlags.indexOf('y') > -1 ? 'y' : regex.sticky ? 'y' : '') // Non-standard but harmless if already being used
+        (newFlags.includes('g') ? 'g' : regex.global ? 'g' : '') +
+            (newFlags.includes('i') ? 'i' : regex.ignoreCase ? 'i' : '') +
+            (newFlags.includes('m') ? 'm' : regex.multiline ? 'm' : '') +
+            (newFlags.includes('u') ? 'u' : regex.sticky ? 'u' : '') +
+            (newFlags.includes('y') ? 'y' : regex.sticky ? 'y' : '')
     );
     regex.lastIndex = newLastIndex;
     return regex;
 }
 
-RegExp.prototype.forEach = function (str, cb, thisObj) {
-    var matches, n0, i = 0, regex = _mixinRegex(this, 'g');
-    thisObj = thisObj || null;
+RegExp.prototype.forEach = function (str, cb, thisObj = null) {
+    let matches, n0, i = 0;
+    const regex = mixinRegex(this, 'g');
     while ((matches = regex.exec(str)) !== null) {
         n0 = matches.splice(0, 1);
         cb.apply(thisObj, matches.concat(i++, n0));
@@ -26,9 +27,9 @@ RegExp.prototype.forEach = function (str, cb, thisObj) {
     return this;
 };
 
-RegExp.prototype.some = function (str, cb, thisObj) {
-    var matches, ret, n0, i = 0, regex = _mixinRegex(this, 'g');
-    thisObj = thisObj || null;
+RegExp.prototype.some = function (str, cb, thisObj = null) {
+    let matches, ret, n0, i = 0;
+    const regex = mixinRegex(this, 'g');
     while ((matches = regex.exec(str)) !== null) {
         n0 = matches.splice(0, 1);
         ret = cb.apply(thisObj, matches.concat(i++, n0));
@@ -39,9 +40,9 @@ RegExp.prototype.some = function (str, cb, thisObj) {
     return false;
 };
 
-RegExp.prototype.every = function (str, cb, thisObj) {
-    var matches, ret, n0, i = 0, regex = _mixinRegex(this, 'g');
-    thisObj = thisObj || null;
+RegExp.prototype.every = function (str, cb, thisObj = null) {
+    let matches, ret, n0, i = 0;
+    const regex = mixinRegex(this, 'g');
     while ((matches = regex.exec(str)) !== null) {
         n0 = matches.splice(0, 1);
         ret = cb.apply(thisObj, matches.concat(i++, n0));
@@ -52,9 +53,9 @@ RegExp.prototype.every = function (str, cb, thisObj) {
     return true;
 };
 
-RegExp.prototype.map = function (str, cb, thisObj) {
-    var matches, n0, i = 0, ret = [], regex = _mixinRegex(this, 'g');
-    thisObj = thisObj || null;
+RegExp.prototype.map = function (str, cb, thisObj = null) {
+    let matches, n0, i = 0;
+    const ret = [], regex = mixinRegex(this, 'g');
     while ((matches = regex.exec(str)) !== null) {
         n0 = matches.splice(0, 1);
         ret.push(cb.apply(thisObj, matches.concat(i++, n0)));
@@ -62,9 +63,9 @@ RegExp.prototype.map = function (str, cb, thisObj) {
     return ret;
 };
 
-RegExp.prototype.filter = function (str, cb, thisObj) {
-    var matches, n0, i = 0, ret = [], regex = _mixinRegex(this, 'g');
-    thisObj = thisObj || null;
+RegExp.prototype.filter = function (str, cb, thisObj = null) {
+    let matches, n0, i = 0;
+    const ret = [], regex = mixinRegex(this, 'g');
     while ((matches = regex.exec(str)) !== null) {
         n0 = matches.splice(0, 1);
         matches = matches.concat(i++, n0);
@@ -75,9 +76,9 @@ RegExp.prototype.filter = function (str, cb, thisObj) {
     return ret;
 };
 
-RegExp.prototype.reduce = function (str, cb, prev, thisObj) {
-    var matches, n0, i = 0, regex = _mixinRegex(this, 'g');
-    thisObj = thisObj || null;
+RegExp.prototype.reduce = function (str, cb, prev, thisObj = null) {
+    let matches, n0, i = 0;
+    const regex = mixinRegex(this, 'g');
     if (!prev) {
         if ((matches = regex.exec(str)) !== null) {
             n0 = matches.splice(0, 1);
@@ -92,8 +93,9 @@ RegExp.prototype.reduce = function (str, cb, prev, thisObj) {
 };
 
 RegExp.prototype.reduceRight = function (str, cb, prevOrig, thisObjOrig) {
-    var matches, n0, i, matchesContainer = [],
-        prev = prevOrig, thisObj = thisObjOrig, regex = _mixinRegex(this, 'g');
+    let matches, n0, i, prev = prevOrig, thisObj = thisObjOrig;
+    const matchesContainer = [],
+        regex = mixinRegex(this, 'g');
     thisObj = thisObj || null;
     while ((matches = regex.exec(str)) !== null) {
         matchesContainer.push(matches);
@@ -101,7 +103,7 @@ RegExp.prototype.reduceRight = function (str, cb, prevOrig, thisObjOrig) {
     i = matchesContainer.length;
     if (!i) {
         if (arguments.length < 3) {
-            throw 'reduce of empty matches array with no initial value';
+            throw new TypeError('reduce of empty matches array with no initial value');
         }
         return prev;
     }
@@ -118,9 +120,9 @@ RegExp.prototype.reduceRight = function (str, cb, prevOrig, thisObjOrig) {
     return prev;
 };
 
-RegExp.prototype.find = function (str, cb, thisObj) {
-    var matches, ret, n0, i = 0, regex = _mixinRegex(this, 'g');
-    thisObj = thisObj || null;
+RegExp.prototype.find = function (str, cb, thisObj = null) {
+    let matches, ret, n0, i = 0;
+    const regex = mixinRegex(this, 'g');
     while ((matches = regex.exec(str)) !== null) {
         n0 = matches.splice(0, 1);
         ret = cb.apply(thisObj, matches.concat(i++, n0));
@@ -131,9 +133,9 @@ RegExp.prototype.find = function (str, cb, thisObj) {
     return false;
 };
 
-RegExp.prototype.findIndex = function (str, cb, thisObj) {
-    var matches, ret, n0, i = 0, regex = _mixinRegex(this, 'g');
-    thisObj = thisObj || null;
+RegExp.prototype.findIndex = function (str, cb, thisObj = null) {
+    let matches, ret, n0, i = 0;
+    const regex = mixinRegex(this, 'g');
     while ((matches = regex.exec(str)) !== null) {
         n0 = matches.splice(0, 1);
         ret = cb.apply(thisObj, matches.concat(i++, n0));
@@ -144,9 +146,9 @@ RegExp.prototype.findIndex = function (str, cb, thisObj) {
     return -1;
 };
 
-RegExp.prototype.findExec = function (str, cb, thisObj) {
-    var matches, ret, n0, i = 0, regex = _mixinRegex(this, 'g');
-    thisObj = thisObj || null;
+RegExp.prototype.findExec = function (str, cb, thisObj = null) {
+    let matches, ret, n0, i = 0;
+    const regex = mixinRegex(this, 'g');
     while ((matches = regex.exec(str)) !== null) {
         n0 = matches.splice(0, 1);
         ret = cb.apply(thisObj, matches.concat(i++, n0));
@@ -157,9 +159,9 @@ RegExp.prototype.findExec = function (str, cb, thisObj) {
     return false;
 };
 
-RegExp.prototype.filterExec = function (str, cb, thisObj) {
-    var matches, n0, i = 0, ret = [], regex = _mixinRegex(this, 'g');
-    thisObj = thisObj || null;
+RegExp.prototype.filterExec = function (str, cb, thisObj = null) {
+    let matches, n0, i = 0;
+    const ret = [], regex = mixinRegex(this, 'g');
     while ((matches = regex.exec(str)) !== null) {
         n0 = matches.splice(0, 1);
         matches.push(i++, n0[0]);
@@ -169,5 +171,3 @@ RegExp.prototype.filterExec = function (str, cb, thisObj) {
     }
     return ret;
 };
-
-}());
