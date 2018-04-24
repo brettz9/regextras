@@ -1,6 +1,13 @@
-# 0.2.0
+# 0.3.0
 
-- 
+- Breaking change: Move now ES6 source files from `lib` to `src`
+- Enhancement: ES6 Modules export (incomplete)
+- Refactoring: Swap main with index
+- Linting: Add ESLint, `.remarkrc`
+- License: Remove mistakenly copied portion from my other repo
+- License: Rename to reflect type (MIT)
+- npm: Add `packge-lock.json`
+- npm: Update devDeps
 
 # 0.1.1
 - Fix README
