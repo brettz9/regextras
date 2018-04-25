@@ -122,6 +122,9 @@ Also adds the following methods:
     returns the `exec` result array (with `index` and `input` as well as
     numeric properties as returned by [RegExp.prototype.exec](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/exec)).
 
+-   ***filterExec(str, cb, thisObj)*** - Operates like `filter()` except that
+    the resulting array will contain the full `exec` results.
+
 If you are using the Node version (or if, for the browser, you add the
 `index-generators.js` file and you are only supporting modern browsers), one
 can use the following generator methods:
