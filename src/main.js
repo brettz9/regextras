@@ -180,6 +180,10 @@ class RegExtras {
         }
         return ret;
     }
+
+    iterator (str) {
+        return regIterator(this.regex, str);
+    }
 }
 
 const _RegExtras = RegExtras;
@@ -190,4 +194,12 @@ RegExtras.prototype = _RegExtras.prototype;
 
 RegExtras.mixinRegex = mixinRegex;
 
-export {mixinRegex, RegExtras};
+function * regIterator (regex, str) {
+    let matches, i = 0;
+    regex = mixinRegex(regex, 'g');
+    while ((matches = regex.exec(str)) !== null) {
+        yield matches.concat(i++);
+    }
+}
+
+export {regIterator, mixinRegex, RegExtras};
