@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-    typeof define === 'function' && define.amd ? define(factory) :
-    (global.RegExtras = factory());
-}(this, (function () { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+    typeof define === 'function' && define.amd ? define(['exports'], factory) :
+    (factory((global.RegExtras = {})));
+}(this, (function (exports) { 'use strict';
 
     // We copy the regular expression so as to be able to always ensure the
     //   exec expression is a global one (and thereby prevent recursion)
@@ -213,7 +213,8 @@
 
     RegExtras.mixinRegex = mixinRegex;
 
-    // We copy the regular expression so as to be able to always ensure the exec expression is a global one (and thereby prevent loops)
+    // We copy the regular expression so as to be able to always
+    // ensure the exec expression is a global one (and thereby prevent recursion)
 
     function addPrototypeMethods(RegExtras) {
         RegExtras.prototype.entries = function* (str) {
@@ -244,8 +245,9 @@
 
     addPrototypeMethods(RegExtras);
 
-    var RegExtras$1 = RegExtras;
+    exports.mixinRegex = mixinRegex;
+    exports.RegExtras = RegExtras;
 
-    return RegExtras$1;
+    Object.defineProperty(exports, '__esModule', { value: true });
 
 })));

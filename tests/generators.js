@@ -1,4 +1,4 @@
-import RegExtras from '../dist/index-es.js';
+import {RegExtras} from '../dist/index-es.js';
 
 import indexGenerators from '../dist/index-generators-es.js';
 indexGenerators(RegExtras);

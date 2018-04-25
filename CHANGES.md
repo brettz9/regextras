@@ -1,3 +1,9 @@
+# 0.4.0
+
+- Breaking change: Stop exporting default
+- npm: Update devDep
+- npm: Separate nodeunit script from linting/rollup
+
 # 0.3.0
 
 - Breaking change: Move now ES6 source files from `lib` to `src`

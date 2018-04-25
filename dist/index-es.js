@@ -207,7 +207,8 @@ RegExtras.prototype = _RegExtras.prototype;
 
 RegExtras.mixinRegex = mixinRegex;
 
-// We copy the regular expression so as to be able to always ensure the exec expression is a global one (and thereby prevent loops)
+// We copy the regular expression so as to be able to always
+// ensure the exec expression is a global one (and thereby prevent recursion)
 
 function addPrototypeMethods(RegExtras) {
     RegExtras.prototype.entries = function* (str) {
@@ -238,6 +239,4 @@ function addPrototypeMethods(RegExtras) {
 
 addPrototypeMethods(RegExtras);
 
-var RegExtras$1 = RegExtras;
-
-export default RegExtras$1;
+export { mixinRegex, RegExtras };

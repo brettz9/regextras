@@ -190,4 +190,4 @@ RegExtras.prototype = _RegExtras.prototype;
 
 RegExtras.mixinRegex = mixinRegex;
 
-export {mixinRegex, RegExtras, RegExtras as default};
+export {mixinRegex, RegExtras};

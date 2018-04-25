@@ -6,6 +6,7 @@ function getRollupObject ({input = 'index', minifying, format = 'umd'} = {}) {
     const nonMinified = {
         input: `src/${input}.js`,
         output: {
+            exports: 'named',
             format,
             file: `dist/${input}-${format}${minifying ? '.min' : ''}.js`,
             name: 'RegExtras'

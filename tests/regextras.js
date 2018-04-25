@@ -1,4 +1,4 @@
-import RegExtras from '../dist/index-es.js';
+import {RegExtras} from '../dist/index-es.js';
 
 function write (s) { document.body.append(s, document.createElement('br')); }
 

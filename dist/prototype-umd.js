@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory() :
-    typeof define === 'function' && define.amd ? define(factory) :
-    (factory());
-}(this, (function () { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+    typeof define === 'function' && define.amd ? define(['exports'], factory) :
+    (factory((global.RegExtras = {})));
+}(this, (function (exports) { 'use strict';
 
     /* eslint-disable no-extend-native */
 
@@ -138,5 +138,7 @@
         }, matchesContainer);
         return prev;
     };
+
+    Object.defineProperty(exports, '__esModule', { value: true });
 
 })));

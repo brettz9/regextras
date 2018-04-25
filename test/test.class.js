@@ -1,6 +1,6 @@
 /* global require, module */
 
-const RegExtras = require('../dist/index-umd.js'),
+const {RegExtras} = require('../dist/index-umd.js'),
     {testCase} = require('nodeunit');
 
 module.exports = testCase({

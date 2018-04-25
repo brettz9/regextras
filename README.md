@@ -51,7 +51,7 @@ const RegExtras = require('regextras');
 Modern browsers:
 
 ```js
-import RegExtras from 'node_modules/regextras/dist/index-es.js';
+import {RegExtras} from 'node_modules/regextras/dist/index-es.js';
 ```
 
 Older browsers:

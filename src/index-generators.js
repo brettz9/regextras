@@ -1,4 +1,5 @@
-// We copy the regular expression so as to be able to always ensure the exec expression is a global one (and thereby prevent loops)
+// We copy the regular expression so as to be able to always
+// ensure the exec expression is a global one (and thereby prevent recursion)
 
 function addPrototypeMethods (RegExtras) {
     RegExtras.prototype.entries = function * (str) {
