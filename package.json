@@ -1,6 +1,6 @@
 {
     "name": "regextras",
-    "version": "0.4.0",
+    "version": "0.5.0",
     "license": "MIT",
     "author": "Brett Zamir",
     "contributors": [],
@@ -10,11 +10,13 @@
     "scripts": {
         "eslint": "eslint .",
         "rollup": "rollup -c",
-        "nodeunit": "nodeunit test",
-        "test": "npm run eslint && npm run rollup && npm run nodeunit",
-        "test-browser": "npm run eslint && npm run rollup && opn http://127.0.0.1:8081/tests/regextras.html && static -p 8081"
+        "mocha": "mocha --require test/node-env.js test/test.*.js",
+        "test": "npm run eslint && npm run rollup && npm run mocha",
+        "test-browser": "npm run eslint && npm run rollup && open-cli http://127.0.0.1:8081/tests/regextras.html && static -p 8081"
     },
-    "id": "regextras@brett.zamir",
+    "browserslist": [
+        "cover 100%"
+    ],
     "main": "dist/index-umd.js",
     "module": "dist/index-es.js",
     "keywords": [
@@ -26,22 +28,29 @@
     "engines": {
         "node": "*"
     },
+    "peerDependencies": {
+        "core-js-bundle": "^3.1.3",
+        "regenerator-runtime": "^0.13.2"
+    },
     "dependencies": {},
     "devDependencies": {
-        "babel-core": "^6.26.0",
-        "eslint": "4.19.1",
-        "eslint-config-standard": "11.0.0",
-        "eslint-plugin-import": "2.11.0",
-        "eslint-plugin-node": "6.0.1",
-        "eslint-plugin-promise": "3.7.0",
-        "eslint-plugin-standard": "3.1.0",
-        "node-static": "^0.7.10",
-        "nodeunit": "0.11.2",
-        "opn-cli": "^3.1.0",
-        "remark-lint": "6.0.1",
-        "rollup": "0.58.2",
-        "rollup-plugin-babel": "^3.0.4",
-        "rollup-plugin-uglify": "^3.0.0",
-        "uglify-es": "^3.3.9"
+        "@babel/core": "^7.4.5",
+        "@babel/preset-env": "^7.4.5",
+        "chai": "^4.2.0",
+        "core-js-bundle": "^3.1.3",
+        "eslint": "5.16.0",
+        "eslint-config-standard": "12.0.0",
+        "eslint-plugin-import": "2.17.3",
+        "eslint-plugin-node": "9.1.0",
+        "eslint-plugin-promise": "4.1.1",
+        "eslint-plugin-standard": "4.0.0",
+        "mocha": "^6.1.4",
+        "node-static": "^0.7.11",
+        "open-cli": "^5.0.0",
+        "regenerator-runtime": "^0.13.2",
+        "remark-lint": "6.0.4",
+        "rollup": "1.13.1",
+        "rollup-plugin-babel": "^4.3.2",
+        "rollup-plugin-terser": "^5.0.0"
     }
 }
