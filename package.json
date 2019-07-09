@@ -1,6 +1,6 @@
 {
     "name": "regextras",
-    "version": "0.6.0",
+    "version": "0.6.1",
     "license": "MIT",
     "author": "Brett Zamir",
     "contributors": [],
@@ -27,10 +27,6 @@
     "description": "Array extras for regular expressions",
     "engines": {
         "node": "*"
-    },
-    "peerDependencies": {
-        "core-js-bundle": "^3.1.4",
-        "regenerator-runtime": "^0.13.2"
     },
     "dependencies": {},
     "devDependencies": {

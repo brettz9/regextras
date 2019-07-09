@@ -1,5 +1,9 @@
 # CHANGES for regextras
 
+## 0.6.1
+
+- npm: Drop `peerDependencies` (though still require)
+
 ## 0.6.0
 
 - Enhancement: Add `main` ES and UMD builds (without generators)
