@@ -1,4 +1,6 @@
 /* globals assert */
+/* eslint-disable no-use-extend-native/no-use-extend-native */
+'use strict';
 require('../dist/regexp-prototype-umd.js');
 
 describe('RegExtras - RegExp Prototype', function () {

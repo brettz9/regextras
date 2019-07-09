@@ -1,6 +1,8 @@
+/* eslint-disable node/no-unsupported-features/es-syntax */
 import {RegExtras} from '../dist/index-es.js';
 
 import indexGenerators from '../dist/index-generators-es.js';
+
 indexGenerators(RegExtras);
 
 const iter = RegExtras(/a([b-z]*)/).values('abc add axyz');

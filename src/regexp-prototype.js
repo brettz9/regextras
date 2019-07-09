@@ -1,21 +1,11 @@
-/* eslint-disable no-extend-native */
+/* eslint-disable no-extend-native,
+    no-use-extend-native/no-use-extend-native,
+    node/no-unsupported-features/es-syntax */
 
 // We copy the regular expression so as to be able to always ensure the exec
 //   expression is a global one (and thereby prevent recursion)
 
-function mixinRegex (regex, newFlags, newLastIndex = regex.lastIndex) {
-    newFlags = newFlags || '';
-    regex = new RegExp(
-        regex.source,
-        (newFlags.includes('g') ? 'g' : regex.global ? 'g' : '') +
-            (newFlags.includes('i') ? 'i' : regex.ignoreCase ? 'i' : '') +
-            (newFlags.includes('m') ? 'm' : regex.multiline ? 'm' : '') +
-            (newFlags.includes('u') ? 'u' : regex.sticky ? 'u' : '') +
-            (newFlags.includes('y') ? 'y' : regex.sticky ? 'y' : '')
-    );
-    regex.lastIndex = newLastIndex;
-    return regex;
-}
+import mixinRegex from './mixinRegex.js';
 
 RegExp.prototype.forEach = function (str, cb, thisObj = null) {
     let matches, n0, i = 0;
@@ -103,7 +93,9 @@ RegExp.prototype.reduceRight = function (str, cb, prevOrig, thisObjOrig) {
     i = matchesContainer.length;
     if (!i) {
         if (arguments.length < 3) {
-            throw new TypeError('reduce of empty matches array with no initial value');
+            throw new TypeError(
+                'reduce of empty matches array with no initial value'
+            );
         }
         return prev;
     }
@@ -112,9 +104,9 @@ RegExp.prototype.reduceRight = function (str, cb, prevOrig, thisObjOrig) {
         n0 = matches.splice(0, 1);
         prev = cb.apply(thisObj, [''].concat(matches.concat(i--, n0)));
     }
-    matchesContainer.reduceRight(function (container, matches) {
-        n0 = matches.splice(0, 1);
-        prev = cb.apply(thisObj, [prev].concat(matches.concat(i--, n0)));
+    matchesContainer.reduceRight(function (container, mtches) {
+        n0 = mtches.splice(0, 1);
+        prev = cb.apply(thisObj, [prev].concat(mtches.concat(i--, n0)));
         return container;
     }, matchesContainer);
     return prev;

@@ -4,8 +4,15 @@
     (global = global || self, factory(global.RegExtras = {}));
 }(this, function (exports) { 'use strict';
 
+    /* eslint-disable node/no-unsupported-features/es-syntax */
     // We copy the regular expression so as to be able to always
     // ensure the exec expression is a global one (and thereby prevent recursion)
+
+    /**
+     *
+     * @param {RegExtras} RegExtras
+     * @returns {void}
+     */
     function addPrototypeMethods(RegExtras) {
       RegExtras.prototype.entries =
       /*#__PURE__*/

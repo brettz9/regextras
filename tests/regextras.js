@@ -1,9 +1,13 @@
+/* eslint-disable node/no-unsupported-features/es-syntax */
 import {RegExtras} from '../dist/index-es.js';
 
-function write (s) { document.body.append(s, document.createElement('br')); }
+import write from './write.js';
 
 RegExtras(/^(.*?): (.*)$/m).forEach('key1: val1\nkey2: key2', (key, val, i, n0) => {
-    write('key is ' + key + ', value is ' + val + ', and the iteration count is ' + i);
+    write(
+        'key is ' + key + ', value is ' + val +
+        ', and the iteration count is ' + i
+    );
 });
 
 if (
@@ -28,7 +32,8 @@ write(
 const matchingKeyValues = RegExtras(/^(.*?): (.*)$/m).filter('key1: val1\nkey2: key2', (key, val, i, n0) => {
     return key === val;
 });
-write('Matching key-value sets (' + matchingKeyValues.length + '): ' +
+write(
+    'Matching key-value sets (' + matchingKeyValues.length + '): ' +
     matchingKeyValues[0]
 );
 

@@ -1,8 +1,13 @@
 # CHANGES for regextras
 
-## ?
+## 0.6.0
 
+- Enhancement: Add `main` ES and UMD builds (without generators)
+- Linting (ESLint): Apply ash-nazg; use js file format
 - Linting: Add `lgtm.yml`
+- Testing: Avoid missing `regenerator-runtime` and `core-js-bundle`;
+    favicon no-ops; use strict; put `write` in own module
+- npm: Update devDeps, peerDep; add ash-nazg and its peerDeps; ignore rollup
 
 ## 0.5.0
 

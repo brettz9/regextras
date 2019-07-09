@@ -1,4 +1,6 @@
 /* globals assert */
+/* eslint-disable no-use-extend-native/no-use-extend-native */
+'use strict';
 require('../dist/string-prototype-umd.js');
 
 describe('RegExtras - String prototype', function () {

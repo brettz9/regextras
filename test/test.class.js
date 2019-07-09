@@ -1,4 +1,5 @@
 /* globals assert */
+'use strict';
 const {RegExtras} = require('../dist/index-umd.js');
 
 describe('RegExtras - Class', function () {

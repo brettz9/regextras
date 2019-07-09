@@ -1,9 +1,14 @@
+/* eslint-disable no-use-extend-native/no-use-extend-native,
+    node/no-unsupported-features/es-syntax */
 import '../dist/string-prototype-es.js';
 
-function write (s) { document.body.append(s, document.createElement('br')); }
+import write from './write.js';
 
 'key1: val1\nkey2: key2'.forEach(/^(.*?): (.*)$/m, (key, val, i, n0) => {
-    write('key is ' + key + ', value is ' + val + ', and the iteration count is ' + i);
+    write(
+        'key is ' + key + ', value is ' + val +
+        ', and the iteration count is ' + i
+    );
 });
 
 if (
@@ -28,7 +33,8 @@ write(
 const matchingKeyValues = 'key1: val1\nkey2: key2'.filter(/^(.*?): (.*)$/m, (key, val, i, n0) => {
     return key === val;
 });
-write('Matching key-value sets (' + matchingKeyValues.length + '): ' +
+write(
+    'Matching key-value sets (' + matchingKeyValues.length + '): ' +
     matchingKeyValues[0]
 );
 
