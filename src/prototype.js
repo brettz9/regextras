@@ -1,7 +1,6 @@
 /* eslint-disable no-extend-native,
     no-use-extend-native/no-use-extend-native,
-    node/no-unsupported-features/es-syntax
-*/
+    node/no-unsupported-features/es-syntax */
 
 // We copy the regular expression so as to be able to always ensure the
 //   exec expression is a global one (and thereby prevent recursion)

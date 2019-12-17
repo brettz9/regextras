@@ -2,8 +2,8 @@
     no-use-extend-native/no-use-extend-native,
     node/no-unsupported-features/es-syntax */
 
-// We copy the regular expression so as to be able to always ensure the exec
-//   expression is a global one (and thereby prevent recursion)
+// We copy the regular expression so as to be able to always ensure the
+//   exec expression is a global one (and thereby prevent recursion)
 
 import mixinRegex from './mixinRegex.js';
 
@@ -45,7 +45,8 @@ RegExp.prototype.every = function (str, cb, thisObj = null) {
 
 RegExp.prototype.map = function (str, cb, thisObj = null) {
   let matches, n0, i = 0;
-  const ret = [], regex = mixinRegex(this, 'g');
+  const ret = [];
+  const regex = mixinRegex(this, 'g');
   while ((matches = regex.exec(str)) !== null) {
     n0 = matches.splice(0, 1);
     ret.push(cb.apply(thisObj, matches.concat(i++, n0)));
@@ -55,7 +56,8 @@ RegExp.prototype.map = function (str, cb, thisObj = null) {
 
 RegExp.prototype.filter = function (str, cb, thisObj = null) {
   let matches, n0, i = 0;
-  const ret = [], regex = mixinRegex(this, 'g');
+  const ret = [];
+  const regex = mixinRegex(this, 'g');
   while ((matches = regex.exec(str)) !== null) {
     n0 = matches.splice(0, 1);
     matches = matches.concat(i++, n0);
@@ -83,9 +85,10 @@ RegExp.prototype.reduce = function (str, cb, prev, thisObj = null) {
 };
 
 RegExp.prototype.reduceRight = function (str, cb, prevOrig, thisObjOrig) {
-  let matches, n0, i, prev = prevOrig, thisObj = thisObjOrig;
-  const matchesContainer = [],
-    regex = mixinRegex(this, 'g');
+  let matches, n0, i,
+    prev = prevOrig, thisObj = thisObjOrig;
+  const regex = mixinRegex(this, 'g');
+  const matchesContainer = [];
   thisObj = thisObj || null;
   while ((matches = regex.exec(str)) !== null) {
     matchesContainer.push(matches);

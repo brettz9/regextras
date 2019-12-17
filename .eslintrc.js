@@ -8,10 +8,17 @@ module.exports = {
   },
   overrides: [{
     files: 'test/**.js',
+    extends: [
+      'plugin:chai-friendly/recommended',
+      'plugin:chai-expect/recommended'
+    ],
     env: {
       mocha: true
     },
-    extends: ['plugin:node/recommended-script'],
+    globals: {
+      expect: true,
+      assert: true
+    },
     rules: {
       'node/no-unsupported-features/es-syntax': 0
     }

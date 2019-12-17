@@ -45,7 +45,9 @@ export default [
   getRollupObject({
     minifying: false, format: 'es', input: 'index-generators'
   }),
-  getRollupObject({minifying: false, format: 'es', input: 'prototype'}),
+  getRollupObject({
+    minifying: false, format: 'es', input: 'prototype'
+  }),
   getRollupObject({
     minifying: false, format: 'es', input: 'regexp-prototype'
   }),
@@ -56,7 +58,9 @@ export default [
   getRollupObject({
     minifying: false, format: 'umd', input: 'index-generators'
   }),
-  getRollupObject({minifying: false, format: 'umd', input: 'prototype'}),
+  getRollupObject({
+    minifying: false, format: 'umd', input: 'prototype'
+  }),
   getRollupObject({
     minifying: false, format: 'umd', input: 'regexp-prototype'
   }),

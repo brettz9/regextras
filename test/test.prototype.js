@@ -1,7 +1,7 @@
 /* eslint-disable no-use-extend-native/no-use-extend-native */
-import '../src/regexp-prototype.js';
+import '../src/prototype.js';
 
-describe('RegExtras - RegExp Prototype', function () {
+describe('RegExtras - Prototype', function () {
   it('forEach', () => {
     const keys = [], vals = [], is = [], n0s = [];
 
@@ -64,26 +64,5 @@ describe('RegExtras - RegExp Prototype', function () {
       return key === 'key2';
     });
     assert.strictEqual(1, result);
-  });
-  it('findExec', () => {
-    const input = 'key1: val1\nkey2: key2';
-    const result = (/^(.*?): (.*)$/m).findExec(input, (key, val, i, n0) => {
-      return key === 'key2';
-    });
-    const expected = ['key2', 'key2'];
-    expected.index = 11;
-    expected.input = input;
-
-    assert.deepEqual(expected, result);
-  });
-  it('filterExec', () => {
-    const input = 'key1: val1\nkey2: key2';
-    const result = (/^(.*?): (.*)$/m).filterExec(input, (key, val, i, n0) => {
-      return key === val;
-    });
-    const expectedArr = [['key2', 'key2', 1, 'key2: key2']];
-    expectedArr[0].index = 11;
-    expectedArr[0].input = input;
-    assert.deepEqual(expectedArr, result);
   });
 });

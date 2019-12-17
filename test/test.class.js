@@ -1,6 +1,4 @@
-/* globals assert */
-'use strict';
-const {RegExtras} = require('../dist/index-umd.js');
+import {RegExtras} from '../src/index.js';
 
 describe('RegExtras - Class', function () {
   it('forEach', () => {

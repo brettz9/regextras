@@ -1,6 +1,7 @@
-'use strict';
-require('core-js-bundle');
-require('regenerator-runtime/runtime');
-global.chai = require('chai');
+import 'core-js-bundle';
+import 'regenerator-runtime/runtime.js';
+import chai from 'chai';
 
-global.assert = global.chai.assert;
+global.chai = chai;
+global.assert = chai.assert;
+global.expect = chai.expect;
