@@ -1,8 +1,15 @@
 # CHANGES for regextras
 
+## ?
+
+- Linting (ESLint): Update per latest ash-nazg; switch to 2sp.
+  indent; lint HTML, Markdown
+- Maintenance: Add `.editorconfig`
+- npm: Update devDeps
+
 ## 0.6.1
 
-- npm: Drop `peerDependencies` (though still require)
+- npm: Drop `peerDependencies` (though still required)
 
 ## 0.6.0
 

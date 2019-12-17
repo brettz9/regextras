@@ -4,5 +4,5 @@
  * @returns {void}
  */
 export default function write (s) {
-    document.body.append(s, document.createElement('br'));
+  document.body.append(s, document.createElement('br'));
 }
