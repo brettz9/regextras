@@ -1,3 +1,5 @@
 test
 tests
 rollup.config.js
+coverage
+.nyc_output

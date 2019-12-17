@@ -11,6 +11,7 @@
 - Testing: Add nyc for coverage
 - Testing: Begin use of BDD style
 - Testing: Add tests for mixinRegex and plain prototype.js
+- Testing: Add HTML reporter
 - npm: Update devDeps
 
 ## 0.6.1

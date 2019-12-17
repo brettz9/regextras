@@ -10,13 +10,19 @@
   "scripts": {
     "eslint": "eslint --ext=js,md,html .",
     "rollup": "rollup -c",
+    "start": "static -p 8081",
+    "coverage": "open-cli http://localhost:8081/coverage && npm start",
     "mocha": "mocha --require esm --require test/node-env.js test/test.*.js --exit",
     "mocha-cov": "nyc npm run mocha",
     "test-cov": "npm run eslint && npm run rollup && npm run mocha-cov",
     "test": "npm run eslint && npm run rollup && npm run mocha",
-    "test-browser": "npm run eslint && npm run rollup && open-cli http://127.0.0.1:8081/tests/regextras.html && static -p 8081"
+    "test-browser": "npm run eslint && npm run rollup && open-cli http://127.0.0.1:8081/tests/regextras.html && npm start"
   },
   "nyc": {
+    "reporter": [
+      "html",
+      "text"
+    ],
     "exclude": [
       ".eslintrc.js",
       "rollup.config.js",
