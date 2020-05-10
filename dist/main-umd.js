@@ -35,7 +35,7 @@
     return _setPrototypeOf(o, p);
   }
 
-  function isNativeReflectConstruct() {
+  function _isNativeReflectConstruct() {
     if (typeof Reflect === "undefined" || !Reflect.construct) return false;
     if (Reflect.construct.sham) return false;
     if (typeof Proxy === "function") return true;
@@ -49,7 +49,7 @@
   }
 
   function _construct(Parent, args, Class) {
-    if (isNativeReflectConstruct()) {
+    if (_isNativeReflectConstruct()) {
       _construct = Reflect.construct;
     } else {
       _construct = function _construct(Parent, args, Class) {
@@ -76,14 +76,12 @@
   function mixinRegex(regex, newFlags) {
     var newLastIndex = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : regex.lastIndex;
     newFlags = newFlags || '';
-    regex = new RegExp(regex.source, (newFlags.includes('g') ? 'g' : regex.global ? 'g' : '') + (newFlags.includes('i') ? 'i' : regex.ignoreCase ? 'i' : '') + (newFlags.includes('m') ? 'm' : regex.multiline ? 'm' : '') + (newFlags.includes('u') ? 'u' : regex.sticky ? 'u' : '') + (newFlags.includes('y') ? 'y' : regex.sticky ? 'y' : ''));
+    regex = new RegExp(regex.source, (newFlags.includes('g') ? 'g' : regex.global ? 'g' : '') + (newFlags.includes('i') ? 'i' : regex.ignoreCase ? 'i' : '') + (newFlags.includes('m') ? 'm' : regex.multiline ? 'm' : '') + (newFlags.includes('u') ? 'u' : regex.unicode ? 'u' : '') + (newFlags.includes('y') ? 'y' : regex.sticky ? 'y' : '') + (newFlags.includes('s') ? 's' : regex.dotAll ? 's' : ''));
     regex.lastIndex = newLastIndex;
     return regex;
   }
 
-  exports.RegExtras =
-  /*#__PURE__*/
-  function () {
+  exports.RegExtras = /*#__PURE__*/function () {
     function RegExtras(regex, flags, newLastIndex) {
       _classCallCheck(this, RegExtras);
 

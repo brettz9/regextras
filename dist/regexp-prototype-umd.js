@@ -14,7 +14,7 @@
   function mixinRegex(regex, newFlags) {
     var newLastIndex = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : regex.lastIndex;
     newFlags = newFlags || '';
-    regex = new RegExp(regex.source, (newFlags.includes('g') ? 'g' : regex.global ? 'g' : '') + (newFlags.includes('i') ? 'i' : regex.ignoreCase ? 'i' : '') + (newFlags.includes('m') ? 'm' : regex.multiline ? 'm' : '') + (newFlags.includes('u') ? 'u' : regex.sticky ? 'u' : '') + (newFlags.includes('y') ? 'y' : regex.sticky ? 'y' : ''));
+    regex = new RegExp(regex.source, (newFlags.includes('g') ? 'g' : regex.global ? 'g' : '') + (newFlags.includes('i') ? 'i' : regex.ignoreCase ? 'i' : '') + (newFlags.includes('m') ? 'm' : regex.multiline ? 'm' : '') + (newFlags.includes('u') ? 'u' : regex.unicode ? 'u' : '') + (newFlags.includes('y') ? 'y' : regex.sticky ? 'y' : '') + (newFlags.includes('s') ? 's' : regex.dotAll ? 's' : ''));
     regex.lastIndex = newLastIndex;
     return regex;
   }
@@ -83,8 +83,8 @@
     var matches,
         n0,
         i = 0;
-    var ret = [],
-        regex = mixinRegex(this, 'g');
+    var ret = [];
+    var regex = mixinRegex(this, 'g');
 
     while ((matches = regex.exec(str)) !== null) {
       n0 = matches.splice(0, 1);
@@ -99,8 +99,8 @@
     var matches,
         n0,
         i = 0;
-    var ret = [],
-        regex = mixinRegex(this, 'g');
+    var ret = [];
+    var regex = mixinRegex(this, 'g');
 
     while ((matches = regex.exec(str)) !== null) {
       n0 = matches.splice(0, 1);
@@ -142,8 +142,8 @@
         i,
         prev = prevOrig,
         thisObj = thisObjOrig;
-    var matchesContainer = [],
-        regex = mixinRegex(this, 'g');
+    var regex = mixinRegex(this, 'g');
+    var matchesContainer = [];
     thisObj = thisObj || null;
 
     while ((matches = regex.exec(str)) !== null) {

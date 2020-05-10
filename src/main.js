@@ -1,4 +1,5 @@
-/* eslint-disable node/no-unsupported-features/es-syntax */
+/* eslint-disable node/no-unsupported-features/es-syntax,
+  jsdoc/require-jsdoc */
 
 // We copy the regular expression so as to be able to always ensure the
 //   exec expression is a global one (and thereby prevent recursion)

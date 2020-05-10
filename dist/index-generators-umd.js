@@ -14,9 +14,7 @@
    * @returns {void}
    */
   function addPrototypeMethods(RegExtras) {
-    RegExtras.prototype.entries =
-    /*#__PURE__*/
-    regeneratorRuntime.mark(function _callee(str) {
+    RegExtras.prototype.entries = /*#__PURE__*/regeneratorRuntime.mark(function _callee(str) {
       var matches, i, regex;
       return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
@@ -45,9 +43,7 @@
         }
       }, _callee, this);
     });
-    RegExtras.prototype.values =
-    /*#__PURE__*/
-    regeneratorRuntime.mark(function _callee2(str) {
+    RegExtras.prototype.values = /*#__PURE__*/regeneratorRuntime.mark(function _callee2(str) {
       var matches, regex;
       return regeneratorRuntime.wrap(function _callee2$(_context2) {
         while (1) {
@@ -75,9 +71,7 @@
         }
       }, _callee2, this);
     });
-    RegExtras.prototype.keys =
-    /*#__PURE__*/
-    regeneratorRuntime.mark(function _callee3(str) {
+    RegExtras.prototype.keys = /*#__PURE__*/regeneratorRuntime.mark(function _callee3(str) {
       var i, regex;
       return regeneratorRuntime.wrap(function _callee3$(_context3) {
         while (1) {

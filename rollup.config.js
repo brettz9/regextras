@@ -1,6 +1,6 @@
 /* eslint-disable node/no-unsupported-features/es-syntax */
 
-import babel from 'rollup-plugin-babel';
+import babel from '@rollup/plugin-babel';
 import {terser} from 'rollup-plugin-terser';
 
 /**
@@ -26,7 +26,9 @@ function getRollupObject ({input = 'index', minifying, format = 'umd'} = {}) {
       name: 'RegExtras'
     },
     plugins: [
-      babel()
+      babel({
+        babelHelpers: 'bundled'
+      })
     ]
   };
   if (minifying) {

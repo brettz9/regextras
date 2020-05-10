@@ -1,5 +1,13 @@
 # CHANGES for regextras
 
+## 0.7.1
+
+- Build: Update builds (dot all)
+- Linting: As per latest ash-nazg/ESLint 7
+- npm: Update `rollup-plugin-babel` to `@rollup/plugin-babel`
+   and explicitly set `babelHelpers`
+- npm: Update devDeps
+
 ## 0.7.0
 
 - Linting (ESLint): Update per latest ash-nazg; switch to 2sp.

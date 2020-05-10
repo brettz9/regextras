@@ -1,3 +1,4 @@
+'use strict';
 module.exports = {
   extends: 'ash-nazg/sauron-node',
   settings: {
@@ -7,6 +8,12 @@ module.exports = {
     ]
   },
   overrides: [{
+    files: ['.eslintrc.js'],
+    extends: ['plugin:node/recommended-script'],
+    rules: {
+      'import/no-commonjs': 0
+    }
+  }, {
     files: 'test/**.js',
     extends: [
       'plugin:chai-friendly/recommended',
@@ -37,6 +44,7 @@ module.exports = {
       str: false
     },
     rules: {
+      'unicorn/no-fn-reference-in-iterator': 0,
       'node/no-unsupported-features/es-syntax': 0,
       'node/no-extraneous-require': ['error', {allowModules: ['regextras']}],
       'import/unambiguous': 0,
