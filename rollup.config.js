@@ -11,9 +11,9 @@ import {terser} from 'rollup-plugin-terser';
 
 /**
  * @param {PlainObject} [config={}]
- * @param {string} [config.input='index']
+ * @param {string} [config.input="index"]
  * @param {boolean} [config.minifying]
- * @param {string} [config.format='umd']
+ * @param {string} [config.format="umd"]
  * @returns {external:RollupConfig}
  */
 function getRollupObject ({input = 'index', minifying, format = 'umd'} = {}) {
@@ -37,7 +37,6 @@ function getRollupObject ({input = 'index', minifying, format = 'umd'} = {}) {
   return nonMinified;
 }
 
-// eslint-disable-next-line import/no-anonymous-default-export
 export default [
   getRollupObject({minifying: false, format: 'umd'}),
   getRollupObject({minifying: true, format: 'umd'}),

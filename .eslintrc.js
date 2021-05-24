@@ -1,6 +1,6 @@
 'use strict';
 module.exports = {
-  extends: 'ash-nazg/sauron-node',
+  extends: 'ash-nazg/sauron-node-overrides',
   settings: {
     polyfills: [
       'console',
@@ -8,12 +8,6 @@ module.exports = {
     ]
   },
   overrides: [{
-    files: ['.eslintrc.js'],
-    extends: ['plugin:node/recommended-script'],
-    rules: {
-      'import/no-commonjs': 0
-    }
-  }, {
     files: 'test/**.js',
     extends: [
       'plugin:chai-friendly/recommended',
@@ -35,7 +29,7 @@ module.exports = {
       'no-console': 0
     }
   }, {
-    files: '*.md',
+    files: '*.md/*.js',
     globals: {
       require: false,
       RegExtras: false,
@@ -44,12 +38,13 @@ module.exports = {
       str: false
     },
     rules: {
-      'unicorn/no-fn-reference-in-iterator': 0,
+      'unicorn/no-array-callback-reference': 0,
       'node/no-unsupported-features/es-syntax': 0,
       'node/no-extraneous-require': ['error', {allowModules: ['regextras']}],
       'import/unambiguous': 0,
       'import/no-commonjs': 0,
       'import/no-extraneous-dependencies': 0,
+      'import/no-unresolved': 0,
       'no-shadow': ['error', {allow: ['RegExtras']}],
       'no-unused-vars': ['error', {
         varsIgnorePattern: 'matches|RegExtras|piglatinArray',
@@ -60,6 +55,8 @@ module.exports = {
   rules: {
     // Disable for now
     'prefer-named-capture-group': 0,
-    'require-unicode-regexp': 0
+    'require-unicode-regexp': 0,
+    'unicorn/prefer-spread': 0,
+    'eslint-comments/require-description': 0
   }
 };

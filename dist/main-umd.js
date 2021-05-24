@@ -1,7 +1,7 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
   typeof define === 'function' && define.amd ? define(['exports'], factory) :
-  (global = global || self, factory(global.RegExtras = {}));
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.RegExtras = {}));
 }(this, (function (exports) { 'use strict';
 
   function _classCallCheck(instance, Constructor) {
@@ -41,7 +41,7 @@
     if (typeof Proxy === "function") return true;
 
     try {
-      Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));
+      Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {}));
       return true;
     } catch (e) {
       return false;

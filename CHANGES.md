@@ -1,5 +1,13 @@
 # CHANGES for regextras
 
+## 0.8.0
+
+### Dev-facing
+
+- Linting: As per latest ash-nazg
+- npm: Switch to pnpm
+- npm: Update devDeps.
+
 ## 0.7.1
 
 - Build: Update builds (dot all)
