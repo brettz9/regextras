@@ -1,9 +1,7 @@
-/* eslint-disable node/no-unsupported-features/es-syntax */
-
 /**
  * @param {RegExp} regex
  * @param {string} newFlags
- * @param {Integer} [newLastIndex=regex.lastIndex]
+ * @param {Integer} [newLastIndex]
  * @returns {RegExp}
  */
 export default function mixinRegex (

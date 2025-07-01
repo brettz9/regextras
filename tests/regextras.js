@@ -1,4 +1,4 @@
-/* eslint-disable node/no-unsupported-features/es-syntax */
+/* eslint-disable n/no-unsupported-features/es-syntax */
 import {RegExtras} from '../dist/index-es.js';
 
 import write from './write.js';

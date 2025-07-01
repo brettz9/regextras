@@ -79,7 +79,11 @@ Example:
 
 ```js
 const piglatinArray = RegExtras(/\w*w?ay/).reduce('ouyay areway illysay', function (arr, i, word) {
-  if (word.endsWith('way')) { arr.push(word.replace(/way$/, '')); } else { arr.push(word.slice(-3, -2) + word.slice(0, -3)); }
+  if (word.endsWith('way')) {
+    arr.push(word.replace(/way$/, ''));
+  } else {
+    arr.push(word.slice(-3, -2) + word.slice(0, -3));
+  }
   return arr;
 }, []);
 ```

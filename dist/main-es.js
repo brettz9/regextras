@@ -1,70 +1,51 @@
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
+function _classCallCheck(a, n) {
+  if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function");
+}
+function _construct(t, e, r) {
+  if (_isNativeReflectConstruct()) return Reflect.construct.apply(null, arguments);
+  var o = [null];
+  o.push.apply(o, e);
+  var p = new (t.bind.apply(t, o))();
+  return p;
+}
+function _defineProperties(e, r) {
+  for (var t = 0; t < r.length; t++) {
+    var o = r[t];
+    o.enumerable = o.enumerable || false, o.configurable = true, "value" in o && (o.writable = true), Object.defineProperty(e, _toPropertyKey(o.key), o);
   }
 }
-
-function _defineProperties(target, props) {
-  for (var i = 0; i < props.length; i++) {
-    var descriptor = props[i];
-    descriptor.enumerable = descriptor.enumerable || false;
-    descriptor.configurable = true;
-    if ("value" in descriptor) descriptor.writable = true;
-    Object.defineProperty(target, descriptor.key, descriptor);
-  }
+function _createClass(e, r, t) {
+  return r && _defineProperties(e.prototype, r), Object.defineProperty(e, "prototype", {
+    writable: false
+  }), e;
 }
-
-function _createClass(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties(Constructor, staticProps);
-  return Constructor;
-}
-
-function _setPrototypeOf(o, p) {
-  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
-    o.__proto__ = p;
-    return o;
-  };
-
-  return _setPrototypeOf(o, p);
-}
-
 function _isNativeReflectConstruct() {
-  if (typeof Reflect === "undefined" || !Reflect.construct) return false;
-  if (Reflect.construct.sham) return false;
-  if (typeof Proxy === "function") return true;
-
   try {
-    Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {}));
-    return true;
-  } catch (e) {
-    return false;
-  }
+    var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {}));
+  } catch (t) {}
+  return (_isNativeReflectConstruct = function () {
+    return !!t;
+  })();
 }
-
-function _construct(Parent, args, Class) {
-  if (_isNativeReflectConstruct()) {
-    _construct = Reflect.construct;
-  } else {
-    _construct = function _construct(Parent, args, Class) {
-      var a = [null];
-      a.push.apply(a, args);
-      var Constructor = Function.bind.apply(Parent, a);
-      var instance = new Constructor();
-      if (Class) _setPrototypeOf(instance, Class.prototype);
-      return instance;
-    };
+function _toPrimitive(t, r) {
+  if ("object" != typeof t || !t) return t;
+  var e = t[Symbol.toPrimitive];
+  if (void 0 !== e) {
+    var i = e.call(t, r);
+    if ("object" != typeof i) return i;
+    throw new TypeError("@@toPrimitive must return a primitive value.");
   }
-
-  return _construct.apply(null, arguments);
+  return (String )(t);
 }
-
-/* eslint-disable node/no-unsupported-features/es-syntax */
+function _toPropertyKey(t) {
+  var i = _toPrimitive(t, "string");
+  return "symbol" == typeof i ? i : i + "";
+}
 
 /**
  * @param {RegExp} regex
  * @param {string} newFlags
- * @param {Integer} [newLastIndex=regex.lastIndex]
+ * @param {Integer} [newLastIndex]
  * @returns {RegExp}
  */
 function mixinRegex(regex, newFlags) {
@@ -78,24 +59,20 @@ function mixinRegex(regex, newFlags) {
 var RegExtras = /*#__PURE__*/function () {
   function RegExtras(regex, flags, newLastIndex) {
     _classCallCheck(this, RegExtras);
-
     this.regex = mixinRegex(typeof regex === 'string' ? new RegExp(regex) : mixinRegex(regex), flags || '', newLastIndex);
   }
-
-  _createClass(RegExtras, [{
+  return _createClass(RegExtras, [{
     key: "forEach",
     value: function forEach(str, cb) {
       var thisObj = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
       var regex = mixinRegex(this.regex, 'g');
       var matches,
-          n0,
-          i = 0;
-
+        n0,
+        i = 0;
       while ((matches = regex.exec(str)) !== null) {
         n0 = matches.splice(0, 1);
         cb.apply(thisObj, matches.concat(i++, n0));
       }
-
       return this;
     }
   }, {
@@ -104,19 +81,16 @@ var RegExtras = /*#__PURE__*/function () {
       var thisObj = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
       var regex = mixinRegex(this.regex, 'g');
       var matches,
-          ret,
-          n0,
-          i = 0;
-
+        ret,
+        n0,
+        i = 0;
       while ((matches = regex.exec(str)) !== null) {
         n0 = matches.splice(0, 1);
         ret = cb.apply(thisObj, matches.concat(i++, n0));
-
         if (ret) {
           return true;
         }
       }
-
       return false;
     }
   }, {
@@ -125,19 +99,16 @@ var RegExtras = /*#__PURE__*/function () {
       var thisObj = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
       var regex = mixinRegex(this.regex, 'g');
       var matches,
-          ret,
-          n0,
-          i = 0;
-
+        ret,
+        n0,
+        i = 0;
       while ((matches = regex.exec(str)) !== null) {
         n0 = matches.splice(0, 1);
         ret = cb.apply(thisObj, matches.concat(i++, n0));
-
         if (!ret) {
           return false;
         }
       }
-
       return true;
     }
   }, {
@@ -147,14 +118,12 @@ var RegExtras = /*#__PURE__*/function () {
       var ret = [];
       var regex = mixinRegex(this.regex, 'g');
       var matches,
-          n0,
-          i = 0;
-
+        n0,
+        i = 0;
       while ((matches = regex.exec(str)) !== null) {
         n0 = matches.splice(0, 1);
         ret.push(cb.apply(thisObj, matches.concat(i++, n0)));
       }
-
       return ret;
     }
   }, {
@@ -162,20 +131,17 @@ var RegExtras = /*#__PURE__*/function () {
     value: function filter(str, cb) {
       var thisObj = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
       var matches,
-          n0,
-          i = 0;
+        n0,
+        i = 0;
       var ret = [],
-          regex = mixinRegex(this.regex, 'g');
-
+        regex = mixinRegex(this.regex, 'g');
       while ((matches = regex.exec(str)) !== null) {
         n0 = matches.splice(0, 1);
         matches = matches.concat(i++, n0);
-
         if (cb.apply(thisObj, matches)) {
           ret.push(n0[0]);
         }
       }
-
       return ret;
     }
   }, {
@@ -183,56 +149,47 @@ var RegExtras = /*#__PURE__*/function () {
     value: function reduce(str, cb, prev) {
       var thisObj = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
       var matches,
-          n0,
-          i = 0;
+        n0,
+        i = 0;
       var regex = mixinRegex(this.regex, 'g');
-
       if (!prev) {
         if ((matches = regex.exec(str)) !== null) {
           n0 = matches.splice(0, 1);
           prev = cb.apply(thisObj, [''].concat(matches.concat(i++, n0)));
         }
       }
-
       while ((matches = regex.exec(str)) !== null) {
         n0 = matches.splice(0, 1);
         prev = cb.apply(thisObj, [prev].concat(matches.concat(i++, n0)));
       }
-
       return prev;
     }
   }, {
     key: "reduceRight",
     value: function reduceRight(str, cb, prevOrig, thisObjOrig) {
       var matches,
-          n0,
-          i,
-          thisObj = thisObjOrig,
-          prev = prevOrig;
+        n0,
+        i,
+        thisObj = thisObjOrig,
+        prev = prevOrig;
       var matchesContainer = [],
-          regex = mixinRegex(this.regex, 'g');
+        regex = mixinRegex(this.regex, 'g');
       thisObj = thisObj || null;
-
       while ((matches = regex.exec(str)) !== null) {
         matchesContainer.push(matches);
       }
-
       i = matchesContainer.length;
-
       if (!i) {
         if (arguments.length < 3) {
           throw new TypeError('reduce of empty matches array with no initial value');
         }
-
         return prev;
       }
-
       if (!prev) {
         matches = matchesContainer.splice(-1)[0];
         n0 = matches.splice(0, 1);
         prev = cb.apply(thisObj, [''].concat(matches.concat(i--, n0)));
       }
-
       matchesContainer.reduceRight(function (container, mtches) {
         n0 = mtches.splice(0, 1);
         prev = cb.apply(thisObj, [prev].concat(mtches.concat(i--, n0)));
@@ -245,20 +202,17 @@ var RegExtras = /*#__PURE__*/function () {
     value: function find(str, cb) {
       var thisObj = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
       var matches,
-          ret,
-          n0,
-          i = 0;
+        ret,
+        n0,
+        i = 0;
       var regex = mixinRegex(this.regex, 'g');
-
       while ((matches = regex.exec(str)) !== null) {
         n0 = matches.splice(0, 1);
         ret = cb.apply(thisObj, matches.concat(i++, n0));
-
         if (ret) {
           return n0[0];
         }
       }
-
       return false;
     }
   }, {
@@ -267,17 +221,14 @@ var RegExtras = /*#__PURE__*/function () {
       var thisObj = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
       var regex = mixinRegex(this.regex, 'g');
       var matches,
-          i = 0;
-
+        i = 0;
       while ((matches = regex.exec(str)) !== null) {
         var n0 = matches.splice(0, 1);
         var ret = cb.apply(thisObj, matches.concat(i++, n0));
-
         if (ret) {
           return i - 1;
         }
       }
-
       return -1;
     }
   }, {
@@ -286,17 +237,14 @@ var RegExtras = /*#__PURE__*/function () {
       var thisObj = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
       var regex = mixinRegex(this.regex, 'g');
       var matches,
-          i = 0;
-
+        i = 0;
       while ((matches = regex.exec(str)) !== null) {
         var n0 = matches.splice(0, 1);
         var ret = cb.apply(thisObj, matches.concat(i++, n0));
-
         if (ret) {
           return matches;
         }
       }
-
       return false;
     }
   }, {
@@ -304,38 +252,29 @@ var RegExtras = /*#__PURE__*/function () {
     value: function filterExec(str, cb) {
       var thisObj = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
       var matches,
-          n0,
-          i = 0;
+        n0,
+        i = 0;
       var ret = [],
-          regex = mixinRegex(this.regex, 'g');
-
+        regex = mixinRegex(this.regex, 'g');
       while ((matches = regex.exec(str)) !== null) {
         n0 = matches.splice(0, 1);
         matches.push(i++, n0[0]);
-
         if (cb.apply(thisObj, matches)) {
           ret.push(matches);
         }
       }
-
       return ret;
     }
   }]);
-
-  return RegExtras;
 }();
-
 var _RegExtras = RegExtras;
-
 RegExtras = function RegExtras() {
   for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
     args[_key] = arguments[_key];
   }
-
-  // eslint-disable-line no-class-assign
+  // eslint-disable-line no-class-assign -- Ok
   return _construct(_RegExtras, args);
 };
-
 RegExtras.prototype = _RegExtras.prototype;
 RegExtras.mixinRegex = mixinRegex;
 

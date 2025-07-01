@@ -1,4 +1,4 @@
-/* eslint-disable no-use-extend-native/no-use-extend-native */
+/* eslint-disable no-use-extend-native/no-use-extend-native -- API */
 import '../src/prototype.js';
 
 describe('RegExtras - Prototype', function () {
@@ -12,57 +12,57 @@ describe('RegExtras - Prototype', function () {
       n0s.push(n0);
     });
 
-    assert.deepEqual(['key1', 'key2'], keys);
-    assert.deepEqual(['val1', 'key2'], vals);
-    assert.deepEqual([0, 1], is);
-    assert.deepEqual(['key1: val1', 'key2: key2'], n0s);
+    assert.deepEqual(keys, ['key1', 'key2']);
+    assert.deepEqual(vals, ['val1', 'key2']);
+    assert.deepEqual(is, [0, 1]);
+    assert.deepEqual(n0s, ['key1: val1', 'key2: key2']);
   });
   it('some', () => {
     const result = (/^(.*?): (.*)$/m).some('key1: val1\nkey2: key2', (key, val, i, n0) => {
       return key === val;
     });
-    assert.strictEqual(true, result);
+    assert.strictEqual(result, true);
   });
   it('every', () => {
     const result = (/^(.*?): (.*)$/m).every('key1: val1\nkey2: key2', (key, val, i, n0) => {
       return key === val;
     });
-    assert.strictEqual(false, result);
+    assert.strictEqual(result, false);
   });
   it('map', () => {
     const result = (/^(.*?): (.*)$/m).map('key1: val1\nkey2: key2', (key, val, i, n0) => {
       return [key, val];
     });
-    assert.deepEqual([['key1', 'val1'], ['key2', 'key2']], result);
+    assert.deepEqual(result, [['key1', 'val1'], ['key2', 'key2']]);
   });
   it('filter', () => {
     const result = (/^(.*?): (.*)$/m).filter('key1: val1\nkey2: key2', (key, val, i, n0) => {
       return key === val;
     });
-    assert.deepEqual(['key2: key2'], result);
+    assert.deepEqual(result, ['key2: key2']);
   });
   it('reduce', () => {
     const result = (/^(.*?): (.*)$/m).reduce('key1: val1\nkey2: key2', (prev, key, val, i, n0) => {
       return prev + key + '=' + val + ';';
     });
-    assert.deepEqual('key1=val1;key2=key2;', result);
+    assert.deepEqual(result, 'key1=val1;key2=key2;');
   });
   it('reduceRight', () => {
     const result = (/^(.*?): (.*)$/m).reduceRight('key1: val1\nkey2: key2', (prev, key, val, i, n0) => {
       return prev + key + '=' + val + ';';
     });
-    assert.deepEqual('key2=key2;key1=val1;', result);
+    assert.deepEqual(result, 'key2=key2;key1=val1;');
   });
   it('find', () => {
     const result = (/^(.*?): (.*)$/m).find('key1: val1\nkey2: key2', (key, val, i, n0) => {
       return key === 'key2';
     });
-    assert.strictEqual('key2: key2', result);
+    assert.strictEqual(result, 'key2: key2');
   });
   it('findIndex', () => {
     const result = (/^(.*?): (.*)$/m).findIndex('key1: val1\nkey2: key2', (key, val, i, n0) => {
       return key === 'key2';
     });
-    assert.strictEqual(1, result);
+    assert.strictEqual(result, 1);
   });
 });

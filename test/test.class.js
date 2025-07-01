@@ -1,3 +1,4 @@
+/* eslint-disable new-cap -- API */
 import {RegExtras} from '../src/index.js';
 
 describe('RegExtras - Class', function () {
@@ -11,58 +12,58 @@ describe('RegExtras - Class', function () {
       n0s.push(n0);
     });
 
-    assert.deepEqual(['key1', 'key2'], keys);
-    assert.deepEqual(['val1', 'key2'], vals);
-    assert.deepEqual([0, 1], is);
-    assert.deepEqual(['key1: val1', 'key2: key2'], n0s);
+    assert.deepEqual(keys, ['key1', 'key2']);
+    assert.deepEqual(vals, ['val1', 'key2']);
+    assert.deepEqual(is, [0, 1]);
+    assert.deepEqual(n0s, ['key1: val1', 'key2: key2']);
   });
   it('some', () => {
     const result = RegExtras(/^(.*?): (.*)$/m).some('key1: val1\nkey2: key2', (key, val, i, n0) => {
       return key === val;
     });
-    assert.strictEqual(true, result);
+    assert.strictEqual(result, true);
   });
   it('every', () => {
     const result = RegExtras(/^(.*?): (.*)$/m).every('key1: val1\nkey2: key2', (key, val, i, n0) => {
       return key === val;
     });
-    assert.strictEqual(false, result);
+    assert.strictEqual(result, false);
   });
   it('map', () => {
     const result = RegExtras(/^(.*?): (.*)$/m).map('key1: val1\nkey2: key2', (key, val, i, n0) => {
       return [key, val];
     });
-    assert.deepEqual([['key1', 'val1'], ['key2', 'key2']], result);
+    assert.deepEqual(result, [['key1', 'val1'], ['key2', 'key2']]);
   });
   it('filter', () => {
     const result = RegExtras(/^(.*?): (.*)$/m).filter('key1: val1\nkey2: key2', (key, val, i, n0) => {
       return key === val;
     });
-    assert.deepEqual(['key2: key2'], result);
+    assert.deepEqual(result, ['key2: key2']);
   });
   it('reduce', () => {
     const result = RegExtras(/^(.*?): (.*)$/m).reduce('key1: val1\nkey2: key2', (prev, key, val, i, n0) => {
       return prev + key + '=' + val + ';';
     });
-    assert.deepEqual('key1=val1;key2=key2;', result);
+    assert.deepEqual(result, 'key1=val1;key2=key2;');
   });
   it('reduceRight', () => {
     const result = RegExtras(/^(.*?): (.*)$/m).reduceRight('key1: val1\nkey2: key2', (prev, key, val, i, n0) => {
       return prev + key + '=' + val + ';';
     });
-    assert.deepEqual('key2=key2;key1=val1;', result);
+    assert.deepEqual(result, 'key2=key2;key1=val1;');
   });
   it('find', () => {
     const result = RegExtras(/^(.*?): (.*)$/m).find('key1: val1\nkey2: key2', (key, val, i, n0) => {
       return key === 'key2';
     });
-    assert.strictEqual('key2: key2', result);
+    assert.strictEqual(result, 'key2: key2');
   });
   it('findIndex', () => {
     const result = RegExtras(/^(.*?): (.*)$/m).findIndex('key1: val1\nkey2: key2', (key, val, i, n0) => {
       return key === 'key2';
     });
-    assert.strictEqual(1, result);
+    assert.strictEqual(result, 1);
   });
   it('findExec', () => {
     const input = 'key1: val1\nkey2: key2';
@@ -73,7 +74,7 @@ describe('RegExtras - Class', function () {
     expected.index = 11;
     expected.input = input;
 
-    assert.deepEqual(expected, result);
+    assert.deepEqual(result, expected);
   });
   it('filterExec', () => {
     const input = 'key1: val1\nkey2: key2';
@@ -83,7 +84,7 @@ describe('RegExtras - Class', function () {
     const expectedArr = [['key2', 'key2', 1, 'key2: key2']];
     expectedArr[0].index = 11;
     expectedArr[0].input = input;
-    assert.deepEqual(expectedArr, result);
+    assert.deepEqual(result, expectedArr);
   });
   it('values', () => {
     const iter = RegExtras(/a([b-z]*)/).values('abc add axyz');
@@ -97,8 +98,8 @@ describe('RegExtras - Class', function () {
       wholes.push(whole);
       parts.push(part);
     }
-    assert.deepEqual(expectedWholes, wholes);
-    assert.deepEqual(expectedParts, parts);
+    assert.deepEqual(wholes, expectedWholes);
+    assert.deepEqual(parts, expectedParts);
   });
   it('entries', () => {
     const iter2 = RegExtras(/a([b-z]*)/).entries('abc add axyz');
@@ -116,9 +117,9 @@ describe('RegExtras - Class', function () {
       wholes.push(whole);
       parts.push(part);
     }
-    assert.deepEqual(expectedIs, is);
-    assert.deepEqual(expectedWholes, wholes);
-    assert.deepEqual(expectedParts, parts);
+    assert.deepEqual(is, expectedIs);
+    assert.deepEqual(wholes, expectedWholes);
+    assert.deepEqual(parts, expectedParts);
   });
   it('keys', () => {
     const is = [];
@@ -127,6 +128,6 @@ describe('RegExtras - Class', function () {
     for (const i of iter3) {
       is.push(i);
     }
-    assert.deepEqual(expectedIs, is);
+    assert.deepEqual(is, expectedIs);
   });
 });

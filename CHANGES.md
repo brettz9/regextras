@@ -1,5 +1,10 @@
 # CHANGES for regextras
 
+## ?
+
+BREAKING CHANGE: Require Node >= 20
+- chore: make ESM; update devDeps.
+
 ## 0.8.0
 
 ### Dev-facing

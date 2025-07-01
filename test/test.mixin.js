@@ -2,6 +2,7 @@ import {mixinRegex} from '../src/index.js';
 
 describe('mixinRegex', () => {
   it('should mix expression with flags', () => {
+    // eslint-disable-next-line sonarjs/stateful-regex -- Just testing
     const regex = /abc/gimuys;
     const copied = mixinRegex(regex);
     expect(copied.flags).to.equal(regex.flags);

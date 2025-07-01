@@ -1,5 +1,4 @@
-/* eslint-disable node/no-unsupported-features/es-syntax,
-  jsdoc/require-jsdoc */
+/* eslint-disable jsdoc/require-jsdoc -- Later */
 
 // We copy the regular expression so as to be able to always ensure the
 //   exec expression is a global one (and thereby prevent recursion)
@@ -176,7 +175,7 @@ class RegExtras {
 }
 
 const _RegExtras = RegExtras;
-RegExtras = function (...args) { // eslint-disable-line no-class-assign
+RegExtras = function (...args) { // eslint-disable-line no-class-assign -- Ok
   return new _RegExtras(...args);
 };
 RegExtras.prototype = _RegExtras.prototype;

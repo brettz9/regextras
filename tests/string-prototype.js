@@ -1,5 +1,5 @@
 /* eslint-disable no-use-extend-native/no-use-extend-native,
-    node/no-unsupported-features/es-syntax */
+    n/no-unsupported-features/es-syntax */
 import '../dist/string-prototype-es.js';
 
 import write from './write.js';

@@ -1,20 +1,17 @@
-/* eslint-disable node/no-unsupported-features/es-syntax */
-
-import babel from '@rollup/plugin-babel';
-import {terser} from 'rollup-plugin-terser';
+import {babel} from '@rollup/plugin-babel';
+import terser from '@rollup/plugin-terser';
 
 /**
- * @external RollupConfig
- * @type {PlainObject}
+ * @type {object}
  * @see {@link https://rollupjs.org/guide/en#big-list-of-options}
  */
 
 /**
- * @param {PlainObject} [config={}]
- * @param {string} [config.input="index"]
+ * @param {oject} [config]
+ * @param {string} [config.input]
  * @param {boolean} [config.minifying]
- * @param {string} [config.format="umd"]
- * @returns {external:RollupConfig}
+ * @param {string} [config.format]
+ * @returns {RollupConfig}
  */
 function getRollupObject ({input = 'index', minifying, format = 'umd'} = {}) {
   const nonMinified = {
